@@ -272,6 +272,23 @@ async def process_chat(request: ChatRequest):
         cleanup_memory()
         return {"response": "I'm sorry, I couldn't process your request due to a technical error."}
 
+@app.post("/chat")
+async def chat(request: ChatRequest, background_tasks: BackgroundTasks):
+    # For long requests, use background tasks
+    try:
+        if request.async_mode:
+            # Process in background
+            background_tasks.add_task(process_chat_request, request)
+            return {"status": "processing", "message": "Your request is being processed"}
+        else:
+            # Process synchronously with timeout
+            return await asyncio.wait_for(process_chat_request(request), timeout=25.0)
+    except asyncio.TimeoutError:
+        return {"error": "Request timed out, please try again"}
+    except Exception as e:
+        logger.error(f"Error: {str(e)}")
+        return {"error": "An error occurred"}
+
 @app.post("/generate")
 async def generate_response(request: QueryRequest):
     """Generate a response for the user query"""
