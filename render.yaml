@@ -1,5 +1,4 @@
 services:
-  # Backend API service
   - type: web
     name: alu-chatbot-backend
     env: python
@@ -11,6 +10,7 @@ services:
       - key: CORS_ALLOWED_ORIGINS
         value: https://your-frontend-domain.com
     healthCheckPath: /health
+
 
   # Frontend service (if you want to deploy the frontend directly to Render)
   # - type: web
