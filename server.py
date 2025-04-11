@@ -25,14 +25,12 @@ try:
             import time
             start_time = time.time()
             
-            # Import the full app (this will replace minimal routes when ready)
+            # Import the full app
             from main import app as full_app
             
-            # Copy all routes from full app to our minimal app
-            for route in full_app.routes:
-                # Skip if route path already exists
-                if not any(r.path == route.path for r in app.routes):
-                    app.routes.append(route)
+            # More aggressive - replace the entire app
+            global app
+            app = full_app
             
             elapsed = time.time() - start_time
             print(f"✅ Full app loaded successfully in {elapsed:.2f} seconds")
