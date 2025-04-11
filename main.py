@@ -19,11 +19,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger("alu-chatbot")
 
-# Add parent directory to path to import utils
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from utils.lightweight_mode import enable_lightweight_mode # type: ignore
-
 # Enable lightweight mode for Hugging Face
+from utils.lightweight_mode import enable_lightweight_mode
+
 if os.environ.get("DEPLOYMENT_ENV") == "huggingface":
     config = enable_lightweight_mode()
     logger.info(f"Running in {config['mode']} mode on {config['device']}")
