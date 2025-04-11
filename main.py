@@ -52,7 +52,10 @@ from enhanced_capabilities.capability_router import handle_question, is_school_r
 from enhanced_capabilities.conversation_memory import ConversationMemory
 
 # Create FastAPI app
-app = FastAPI(title="ALU Chatbot Backend")
+app = FastAPI(
+    title="ALU Chatbot Backend",
+    root_path=os.environ.get("ROOT_PATH", "")  # Add this line
+)
 
 # Get CORS settings from environment or use default
 allowed_origins = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:3001").split(",")
@@ -139,21 +142,13 @@ async def root():
     """Health check endpoint"""
     return {"status": "ALU Chatbot backend is running"}
 
-# Update the health check endpoint
 @app.get("/health")
 async def health():
     """Health check endpoint with detailed system status"""
     try:
-        # Basic health check - will succeed even if other components fail
         return {
             "status": "healthy",
-            "timestamp": datetime.now().isoformat(),
-            "components": {
-                "document_processor": document_processor is not None,
-                "retrieval_engine": retrieval_engine is not None,
-                "prompt_engine": prompt_engine is not None,
-                "conversation_memory": conversation_memory is not None
-            }
+            "timestamp": datetime.now().isoformat()
         }
     except Exception as e:
         logger.error(f"Error in health check: {e}")
@@ -443,5 +438,5 @@ def shutdown_event():
 
 # Run the server
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))
-    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)  # Enable reload for development
+    port = int(os.environ.get("PORT", 10000))  # Change default to 10000
+    uvicorn.run(app, host="0.0.0.0", port=port)  # Remove reload and use app directly
