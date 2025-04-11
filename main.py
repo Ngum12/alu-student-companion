@@ -199,122 +199,50 @@ async def health():
             "timestamp": datetime.now().isoformat()
         }
 
+@app.get("/api/test")
+async def test_endpoint():
+    """Simple test endpoint that doesn't use ML components"""
+    return {
+        "status": "ok",
+        "message": "This is a test response that doesn't use ML components",
+        "time": datetime.now().isoformat()
+    }
+
 @app.post("/api/chat")
 async def process_chat(request: ChatRequest):
-    # Use lazy loading
-    processor = get_document_processor()
-    engine = get_retrieval_engine()
-    
-    user_message = request.message
-    user_id = request.options.get("user_id", "anonymous") if request.options else "anonymous"
-    conversation_id = request.options.get("conversation_id") if request.options else None
-    
-    logger.info(f"Processing message: '{user_message}'")
-    logger.info(f"Is school related: {is_school_related(user_message)}")
-    
     try:
-        # Add user message to conversation memory
-        conversation_memory.add_message(user_id, "user", user_message, conversation_id)
+        # Memory intensive operations
+        # Set a short timeout for initialization
+        signal.signal(signal.SIGALRM, timeout_handler)
+        signal.alarm(10)  # 10 second timeout for initialization
         
-        # Get conversation history for context
-        conversation = conversation_memory.get_active_conversation(user_id)
-        conversation_history = conversation.get_formatted_history()
-        
-        # First, check if this is a specialized query that should use enhanced capabilities
-        if not is_school_related(user_message):
-            try:
-                logger.info(f"Trying enhanced capabilities for: '{user_message}'")
-                
-                # Use the enhanced capabilities router
-                result = handle_question(
-                    user_message,
-                    search_school_docs_func=lambda q: engine.retrieve_context(q),
-                    conversation_history=conversation_history
-                )
-                
-                logger.info(f"Selected capability: {result['source']}")
-                
-                # Format the response based on which capability handled it
-                if result["source"] == "math_solver":
-                    steps = "\n".join(result["additional_info"]) if result["additional_info"] else ""
-                    response = f"{result['answer']}\n\n{steps}"
-                elif result["source"] == "web_search":
-                    snippets = result["additional_info"]["snippets"][:2] if "snippets" in result["additional_info"] else []
-                    links = result["additional_info"]["links"][:2] if "links" in result["additional_info"] else []
-                    
-                    sources = ""
-                    for i, link in enumerate(links):
-                        sources += f"\n- [{link}]({link})"
-                    
-                    response = f"{result['answer']}\n\nSources:{sources}"
-                elif result["source"] == "code_support":
-                    # Properly format code responses
-                    code_result = result.get("additional_info", {})
-                    language = code_result.get("language", "text")
-                    code = code_result.get("code", "")
-                    
-                    # Format with proper code blocks
-                    response = f"{result['answer']}\n\n```{language}\n{code}\n```"
-                else:
-                    response = result["answer"]
-                
-                # Add AI response to conversation memory
-                conversation_memory.add_message(user_id, "assistant", response, conversation.id)
-                
-                # Periodically save conversations to disk
-                if random.random() < 0.1:  # 10% chance to save after each message
-                    conversation_memory.save_to_disk()
-                
-                cleanup_memory()
-                return {
-                    "response": response,
-                    "conversation_id": conversation.id
-                }
-            except Exception as e:
-                logger.error(f"Enhanced capabilities error: {e}")
-                # Continue to existing document retrieval code
-        
-        # Get relevant context from the retrieval engine
-        context_docs = engine.retrieve_context(
-            query=user_message,
-            role="student"  # Default role
-        )
-        
-        # Generate response using the prompt engine
-        response = get_prompt_engine().generate_response(
-            query=user_message,
-            context=context_docs,
-            conversation_history=conversation_history,
-            role="student",
-            options={}
-        )
-        
-        # Add AI response to conversation memory
-        conversation_memory.add_message(user_id, "assistant", response, conversation.id)
-        
-        # Extract sources for attribution
-        sources = []
-        for doc in context_docs[:3]:  # Top 3 sources
-            if doc.metadata and 'source' in doc.metadata:
-                source = {
-                    'title': doc.metadata.get('title', 'ALU Knowledge Base'),
-                    'source': doc.metadata.get('source', 'ALU Brain')
-                }
-                if source not in sources:  # Avoid duplicates
-                    sources.append(source)
-        
-        cleanup_memory()
-        return {
-            "response": response,
-            "sources": sources,
-            "engine": "alu_prompt_engine",
-            "conversation_id": conversation.id
-        }
-        
+        try:
+            # Use lazy loading
+            processor = get_document_processor()
+            engine = get_retrieval_engine()
+            
+            # Cancel the initialization timeout
+            signal.alarm(0)
+            
+            # Rest of your existing code...
+            
+        except TimeoutError:
+            logger.error("Component initialization timed out")
+            return {
+                "response": "I'm currently experiencing high demand. Please try a simpler question or try again later.",
+                "error_type": "timeout"
+            }
+        finally:
+            signal.alarm(0)  # Always cancel alarm
+            
     except Exception as e:
-        logger.error(f"Error processing chat: {e}")
+        logger.error(f"Critical error in process_chat: {str(e)}")
+        return {
+            "response": "I'm sorry, I couldn't process your request at this time. Please try again later.",
+            "error_type": "general_error"
+        }
+    finally:
         cleanup_memory()
-        return {"response": "I'm sorry, I couldn't process your request due to a technical error."}
 
 @app.post("/chat")
 async def chat(request: ChatRequest, background_tasks: BackgroundTasks):

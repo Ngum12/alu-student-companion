@@ -20,6 +20,14 @@ try:
         import uvicorn
         port = int(os.environ.get("PORT", 10000))
         print(f"⚡ Starting server on port {port} ⚡")
+        print(f"⚡ Using Python {sys.version} ⚡")
+        print(f"⚡ Memory available: {os.environ.get('RENDER_MEMORY_TOTAL', 'unknown')} ⚡")
+        
+        # Add simple route handlers to overwrite any problematic ones
+        @app.get("/api/minimal-chat")
+        async def minimal_chat():
+            return {"response": "This is a minimal chat response that doesn't use ML components"}
+        
         uvicorn.run(app, host="0.0.0.0", port=port)
 except Exception as e:
     print(f"CRITICAL ERROR DURING IMPORT: {e}")
