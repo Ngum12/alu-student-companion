@@ -10,6 +10,7 @@ fastapi==0.104.1
 uvicorn==0.23.2
 pydantic==2.4.2
 python-multipart==0.0.6
+markdown==3.5.1  # Add this line for response formatting
 
 # Vector database and embeddings - CRITICAL for search
 chromadb==0.4.22
