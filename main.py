@@ -15,6 +15,8 @@ import torch
 import time
 import sys
 import logging
+import resource
+import signal
 
 logging.basicConfig(
     level=logging.INFO,
@@ -44,6 +46,28 @@ def cleanup_memory():
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
 
+# Set memory limit (2GB)
+def limit_memory():
+    soft, hard = resource.getrlimit(resource.RLIMIT_AS)
+    resource.setrlimit(resource.RLIMIT_AS, (2 * 1024 * 1024 * 1024, hard))
+
+# Set function timeout handler
+class TimeoutError(Exception):
+    pass
+
+def timeout_handler(signum, frame):
+    raise TimeoutError("Function call timed out")
+
+# Use like this in heavy functions:
+# signal.signal(signal.SIGALRM, timeout_handler)
+# signal.alarm(30)  # 30 second timeout
+# try:
+#     heavy_function()
+# except TimeoutError:
+#     logger.error("Function timed out")
+# finally:
+#     signal.alarm(0)  # Cancel alarm
+
 # Import the modules
 from document_processor import DocumentProcessor
 from retrieval_engine_extended import ExtendedRetrievalEngine
@@ -51,6 +75,58 @@ from prompt_engine import PromptEngine
 from prompt_engine.nyptho_integration import NypthoIntegration
 from enhanced_capabilities.capability_router import handle_question, is_school_related
 from enhanced_capabilities.conversation_memory import ConversationMemory
+
+# Add this near the top of your file
+_document_processor = None
+_retrieval_engine = None
+_prompt_engine = None
+_nyptho = None
+
+# Function to get components only when needed
+def get_document_processor():
+    global _document_processor
+    if _document_processor is None:
+        try:
+            _document_processor = DocumentProcessor()
+            logger.info("✅ DocumentProcessor initialized on first use")
+        except Exception as e:
+            logger.warning(f"⚠️ DocumentProcessor init failed: {e}")
+            _document_processor = None
+    return _document_processor
+
+# Similar functions for other components
+def get_retrieval_engine():
+    global _retrieval_engine
+    if _retrieval_engine is None:
+        try:
+            _retrieval_engine = ExtendedRetrievalEngine()
+            logger.info("✅ ExtendedRetrievalEngine initialized on first use")
+        except Exception as e:
+            logger.warning(f"⚠️ ExtendedRetrievalEngine init failed: {e}")
+            _retrieval_engine = None
+    return _retrieval_engine
+
+def get_prompt_engine():
+    global _prompt_engine
+    if _prompt_engine is None:
+        try:
+            _prompt_engine = PromptEngine()
+            logger.info("✅ PromptEngine initialized on first use")
+        except Exception as e:
+            logger.warning(f"⚠️ PromptEngine init failed: {e}")
+            _prompt_engine = None
+    return _prompt_engine
+
+def get_nyptho():
+    global _nyptho
+    if _nyptho is None:
+        try:
+            _nyptho = NypthoIntegration()
+            logger.info("✅ NypthoIntegration initialized on first use")
+        except Exception as e:
+            logger.warning(f"⚠️ NypthoIntegration init failed: {e}")
+            _nyptho = None
+    return _nyptho
 
 # Create FastAPI app
 app = FastAPI(
@@ -67,51 +143,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Replace the existing component initialization code with this
+# Initialize conversation memory
 try:
-    # Initialize components one by one with explicit error handling
-    try:
-        document_processor = DocumentProcessor()
-        logger.info("✅ DocumentProcessor initialized")
-    except Exception as e:
-        logger.warning(f"⚠️ DocumentProcessor init failed: {e}")
-        document_processor = None
-        
-    try:
-        retrieval_engine = ExtendedRetrievalEngine()
-        logger.info("✅ ExtendedRetrievalEngine initialized")
-    except Exception as e:
-        logger.warning(f"⚠️ ExtendedRetrievalEngine init failed: {e}")
-        retrieval_engine = None
-        
-    try:
-        prompt_engine = PromptEngine()
-        logger.info("✅ PromptEngine initialized")
-    except Exception as e:
-        logger.warning(f"⚠️ PromptEngine init failed: {e}")
-        prompt_engine = None
-        
-    try:
-        nyptho = NypthoIntegration()
-        logger.info("✅ NypthoIntegration initialized")
-    except Exception as e:
-        logger.warning(f"⚠️ NypthoIntegration init failed: {e}")
-        nyptho = None
-        
     # Create data directory if it doesn't exist
     os.makedirs("./data", exist_ok=True)
     
-    try:
-        conversation_memory = ConversationMemory(persistence_path="./data/conversations.json")
-        conversation_memory.load_from_disk()
-        logger.info("✅ ConversationMemory initialized and loaded")
-    except Exception as e:
-        logger.warning(f"⚠️ ConversationMemory init failed: {e}")
-        conversation_memory = None
-        
+    conversation_memory = ConversationMemory(persistence_path="./data/conversations.json")
+    conversation_memory.load_from_disk()
+    logger.info("✅ ConversationMemory initialized and loaded")
 except Exception as e:
-    logger.error(f"⚠️ CRITICAL INIT ERROR: {e}")
-    # Don't exit - provide minimal functionality instead
+    logger.warning(f"⚠️ ConversationMemory init failed: {e}")
+    conversation_memory = None
 
 # Define request models
 class ChatRequest(BaseModel):
@@ -159,6 +201,10 @@ async def health():
 
 @app.post("/api/chat")
 async def process_chat(request: ChatRequest):
+    # Use lazy loading
+    processor = get_document_processor()
+    engine = get_retrieval_engine()
+    
     user_message = request.message
     user_id = request.options.get("user_id", "anonymous") if request.options else "anonymous"
     conversation_id = request.options.get("conversation_id") if request.options else None
@@ -182,7 +228,7 @@ async def process_chat(request: ChatRequest):
                 # Use the enhanced capabilities router
                 result = handle_question(
                     user_message,
-                    search_school_docs_func=lambda q: retrieval_engine.retrieve_context(q),
+                    search_school_docs_func=lambda q: engine.retrieve_context(q),
                     conversation_history=conversation_history
                 )
                 
@@ -229,13 +275,13 @@ async def process_chat(request: ChatRequest):
                 # Continue to existing document retrieval code
         
         # Get relevant context from the retrieval engine
-        context_docs = retrieval_engine.retrieve_context(
+        context_docs = engine.retrieve_context(
             query=user_message,
             role="student"  # Default role
         )
         
         # Generate response using the prompt engine
-        response = prompt_engine.generate_response(
+        response = get_prompt_engine().generate_response(
             query=user_message,
             context=context_docs,
             conversation_history=conversation_history,
@@ -292,7 +338,7 @@ async def generate_response(request: QueryRequest):
     """Generate a response for the user query"""
     try:
         # Get relevant context from the retrieval engine
-        context_docs = retrieval_engine.retrieve_context(
+        context_docs = get_retrieval_engine().retrieve_context(
             query=request.query, 
             role=request.role
         )
@@ -306,13 +352,13 @@ async def generate_response(request: QueryRequest):
         model_id = "standard_engine"
         
         # Generate response using appropriate engine
-        if use_nyptho and nyptho.get_status()["ready"]:
+        if use_nyptho and get_nyptho().get_status()["ready"]:
             # Use Nyptho for response
             personality = None
             if request.options and "personality" in request.options:
                 personality = request.options["personality"]
                 
-            response = nyptho.generate_response(
+            response = get_nyptho().generate_response(
                 query=request.query,
                 context=context_docs,
                 personality=personality
@@ -320,7 +366,7 @@ async def generate_response(request: QueryRequest):
             model_id = "nyptho"
         else:
             # Use standard prompt engine
-            response = prompt_engine.generate_response(
+            response = get_prompt_engine().generate_response(
                 query=request.query,
                 context=context_docs,
                 conversation_history=request.conversation_history,
@@ -330,7 +376,7 @@ async def generate_response(request: QueryRequest):
         
         # Have Nyptho observe this interaction (it learns from all responses)
         if model_id != "nyptho":  # Don't observe itself
-            nyptho.observe_model(
+            get_nyptho().observe_model(
                 query=request.query,
                 response=response,
                 model_id=model_id,
@@ -356,12 +402,12 @@ async def upload_document(
     """Upload and process a document into the vector store"""
     try:
         # Process the document
-        doc_id = await document_processor.process_document(file, title, source)
+        doc_id = await get_document_processor().process_document(file, title, source)
         
         # Add background task to update the vector store
         if background_tasks:
             background_tasks.add_task(
-                retrieval_engine.update_vector_store,
+                get_retrieval_engine().update_vector_store,
                 doc_id
             )
         
@@ -374,7 +420,7 @@ async def upload_document(
 async def list_documents():
     """List all available documents in the knowledge base"""
     try:
-        documents = document_processor.list_documents()
+        documents = get_document_processor().list_documents()
         return {"documents": documents}
     except Exception as e:
         logger.error(f"Error listing documents: {e}")
@@ -384,10 +430,10 @@ async def list_documents():
 async def delete_document(doc_id: str):
     """Delete a document from the knowledge base"""
     try:
-        success = document_processor.delete_document(doc_id)
+        success = get_document_processor().delete_document(doc_id)
         if success:
             # Update the vector store to remove the document's embeddings
-            retrieval_engine.remove_document(doc_id)
+            get_retrieval_engine().remove_document(doc_id)
             return {"status": "success", "message": "Document deleted successfully"}
         else:
             raise HTTPException(status_code=404, detail="Document not found")
@@ -399,7 +445,7 @@ async def delete_document(doc_id: str):
 async def rebuild_index(background_tasks: BackgroundTasks):
     """Rebuild the vector index with all documents"""
     try:
-        background_tasks.add_task(retrieval_engine.rebuild_index)
+        background_tasks.add_task(get_retrieval_engine().rebuild_index)
         return {"status": "success", "message": "Index rebuild started in the background"}
     except Exception as e:
         logger.error(f"Error starting index rebuild: {e}")
@@ -410,7 +456,7 @@ async def rebuild_index(background_tasks: BackgroundTasks):
 async def get_nyptho_status():
     """Get the current status of Nyptho"""
     try:
-        status = nyptho.get_status()
+        status = get_nyptho().get_status()
         return status
     except Exception as e:
         logger.error(f"Error getting Nyptho status: {e}")
@@ -420,7 +466,7 @@ async def get_nyptho_status():
 async def set_nyptho_personality(settings: PersonalitySettings):
     """Update Nyptho's personality settings"""
     try:
-        result = nyptho.set_personality({
+        result = get_nyptho().set_personality({
             "helpfulness": settings.helpfulness,
             "creativity": settings.creativity,
             "precision": settings.precision,
@@ -435,7 +481,7 @@ async def set_nyptho_personality(settings: PersonalitySettings):
 async def get_search_stats():
     """Get search engine performance statistics"""
     try:
-        search_stats = retrieval_engine.alu_brain.search_engine.get_search_stats()
+        search_stats = get_retrieval_engine().alu_brain.search_engine.get_search_stats()
         return search_stats
     except Exception as e:
         logger.error(f"Error getting search stats: {e}")
@@ -448,6 +494,6 @@ def shutdown_event():
     conversation_memory.save_to_disk()
     logger.info("Shutting down Nyptho...")
     try:
-        nyptho.shutdown()
+        get_nyptho().shutdown()
     except:
         pass  # Ignore errors during shutdown
