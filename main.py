@@ -58,12 +58,10 @@ app = FastAPI(
     root_path=os.environ.get("ROOT_PATH", "")  # Add this line
 )
 
-# Get CORS settings from environment or use default
-allowed_origins = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:3001").split(",")
-
+# Properly configure CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=["https://alu-student-companion.onrender.com", "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
