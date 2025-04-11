@@ -265,13 +265,92 @@ def process_chat_internal(request: ChatRequest):
         conversation = conversation_memory.get_active_conversation(user_id)
         conversation_history = conversation.get_formatted_history()
         
-        # Process using your existing code...
-        # ... (all your existing chat processing logic) ...
+        # First, check if this is a specialized query that should use enhanced capabilities
+        if not is_school_related(user_message):
+            try:
+                print(f"Trying enhanced capabilities for: '{user_message}'")
+                
+                # Use the enhanced capabilities router
+                result = handle_question(
+                    user_message,
+                    lambda q: retrieval_engine.retrieve_context(q)
+                )
+                
+                print(f"Selected capability: {result['source']}")
+                
+                # Format the response based on which capability handled it
+                if result["source"] == "math_solver":
+                    steps = "\n".join(result["additional_info"]) if result["additional_info"] else ""
+                    response = f"{result['answer']}\n\n{steps}"
+                elif result["source"] == "web_search":
+                    snippets = result["additional_info"]["snippets"][:2] if "snippets" in result["additional_info"] else []
+                    links = result["additional_info"]["links"][:2] if "links" in result["additional_info"] else []
+                    
+                    sources = ""
+                    for i, link in enumerate(links):
+                        sources += f"\n- [{link}]({link})"
+                    
+                    response = f"{result['answer']}\n\nSources:{sources}"
+                elif result["source"] == "code_support":
+                    # Properly format code responses
+                    code_result = result.get("additional_info", {})
+                    language = code_result.get("language", "text")
+                    code = code_result.get("code", "")
+                    
+                    # Format with proper code blocks
+                    response = f"{result['answer']}\n\n```{language}\n{code}\n```"
+                else:
+                    response = result["answer"]
+                
+                # Add AI response to conversation memory
+                conversation_memory.add_message(user_id, "assistant", response, conversation.id)
+                
+                # Periodically save conversations to disk
+                if random.random() < 0.1:  # 10% chance to save after each message
+                    conversation_memory.save_to_disk()
+                
+                cleanup_memory()
+                return {
+                    "response": response,
+                    "conversation_id": conversation.id
+                }
+            except Exception as e:
+                print(f"Enhanced capabilities error: {e}")
+                # Continue to existing document retrieval code
         
-        # Return the full response
+        # Get relevant context from the retrieval engine
+        context_docs = retrieval_engine.retrieve_context(
+            query=user_message,
+            role="student"  # Default role
+        )
+        
+        # Generate response using the prompt engine
+        response = prompt_engine.generate_response(
+            query=user_message,
+            context=context_docs,
+            conversation_history=conversation_history,
+            role="student",
+            options={}
+        )
+        
+        # Add AI response to conversation memory
+        conversation_memory.add_message(user_id, "assistant", response, conversation.id)
+        
+        # Extract sources for attribution
+        sources = []
+        for doc in context_docs[:3]:  # Top 3 sources
+            if doc.metadata and 'source' in doc.metadata:
+                source = {
+                    'title': doc.metadata.get('title', 'ALU Knowledge Base'),
+                    'source': doc.metadata.get('source', 'ALU Brain')
+                }
+                if source not in sources:  # Avoid duplicates
+                    sources.append(source)
+        
+        cleanup_memory()
         return {
             "response": response,
-            "sources": sources if 'sources' in locals() else [],
+            "sources": sources,
             "engine": "alu_prompt_engine",
             "conversation_id": conversation.id
         }
