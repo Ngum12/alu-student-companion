@@ -19,6 +19,55 @@ import platform
 import signal
 import threading
 
+# Cross-platform imports and utilities
+if platform.system() != "Windows":
+    # Linux-specific imports
+    import resource
+    
+    # Linux memory limit function
+    def limit_memory(max_gb=2):
+        """Limit memory usage on Linux"""
+        soft, hard = resource.getrlimit(resource.RLIMIT_AS)
+        # Set to max_gb GB or keep hard limit if lower
+        max_bytes = max_gb * 1024 * 1024 * 1024
+        resource.setrlimit(resource.RLIMIT_AS, (min(max_bytes, hard), hard))
+        print(f"✅ Memory limited to {max_gb}GB on Linux")
+        
+    # Linux timeout handler using SIGALRM
+    def timeout_handler(signum, frame):
+        """Handle timeouts on Linux"""
+        raise TimeoutError("Function call timed out")
+else:
+    # Windows mock implementations
+    def limit_memory(max_gb=2):
+        """Mock memory limit function for Windows"""
+        print(f"ℹ️ Memory limiting not available on Windows (would be {max_gb}GB on Linux)")
+    
+    # Windows timeout handler (no SIGALRM)
+    def timeout_handler(signum, frame):
+        """Mock timeout handler for Windows"""
+        pass  # Windows can't use this signal mechanism
+
+# More aggressive memory management for Render
+def cleanup_memory():
+    """Cross-platform memory cleanup"""
+    import gc
+    gc.collect()
+    
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+    
+    # Linux-specific memory release
+    if platform.system() != "Windows":
+        try:
+            import ctypes
+            libc = ctypes.CDLL("libc.so.6")
+            # Return memory to OS
+            libc.malloc_trim(0)
+            print("✅ Released memory back to OS (Linux)")
+        except Exception as e:
+            print(f"⚠️ Error releasing memory to OS: {e}")
+
 # Set environment variables to reduce memory usage
 os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["MKL_NUM_THREADS"] = "1"
@@ -28,12 +77,6 @@ os.environ["TRANSFORMERS_CACHE"] = "/tmp/transformers_cache"
 if torch.cuda.is_available():
     torch.cuda.empty_cache()
 torch.set_num_threads(1)
-
-# Add a memory cleanup function
-def cleanup_memory():
-    gc.collect()
-    if torch.cuda.is_available():
-        torch.cuda.empty_cache()
 
 logging.basicConfig(
     level=logging.INFO,
@@ -48,6 +91,32 @@ from prompt_engine import PromptEngine
 from prompt_engine.nyptho_integration import NypthoIntegration
 from enhanced_capabilities.capability_router import handle_question, is_school_related
 from enhanced_capabilities.conversation_memory import ConversationMemory
+
+# Timeout execution utility
+def execute_with_timeout(func, timeout_seconds=30, *args, **kwargs):
+    """
+    Run a function with a timeout, works on both Windows and Linux
+    Returns tuple (result, error)
+    """
+    result = [None]
+    exception = [None]
+    
+    def worker():
+        try:
+            result[0] = func(*args, **kwargs)
+        except Exception as e:
+            exception[0] = e
+    
+    thread = threading.Thread(target=worker)
+    thread.daemon = True
+    thread.start()
+    thread.join(timeout_seconds)
+    
+    if thread.is_alive():
+        return None, TimeoutError(f"Function timed out after {timeout_seconds} seconds")
+    if exception[0]:
+        return None, exception[0]
+    return result[0], None
 
 # Create FastAPI app
 app = FastAPI(title="ALU Chatbot Backend")
@@ -159,8 +228,27 @@ async def health():
             "timestamp": datetime.now().isoformat()
         }
 
-@app.post("/api/chat")
-async def process_chat(request: ChatRequest):
+@app.get("/debug")
+async def debug_info():
+    """Debug endpoint with detailed system info"""
+    import sys
+    import psutil
+    process = psutil.Process()
+    
+    return {
+        "status": "running",
+        "python_version": sys.version,
+        "platform": platform.system(),
+        "memory_usage_mb": process.memory_info().rss / (1024 * 1024),
+        "components_loaded": {
+            "document_processor": document_processor is not None,
+            "retrieval_engine": retrieval_engine is not None,
+            "prompt_engine": prompt_engine is not None,
+            "conversation_memory": conversation_memory is not None
+        }
+    }
+
+def process_chat_internal(request: ChatRequest):
     user_message = request.message
     user_id = request.options.get("user_id", "anonymous") if request.options else "anonymous"
     conversation_id = request.options.get("conversation_id") if request.options else None
@@ -270,3 +358,32 @@ async def process_chat(request: ChatRequest):
         print(f"Error processing chat: {e}")
         cleanup_memory()
         return {"response": "I'm sorry, I couldn't process your request due to a technical error."}
+
+@app.post("/api/chat")
+async def process_chat(request: ChatRequest):
+    try:
+        # Use cross-platform timeout for processing
+        result, error = execute_with_timeout(
+            process_chat_internal,
+            timeout_seconds=30,
+            request=request
+        )
+        
+        if error:
+            if isinstance(error, TimeoutError):
+                return {
+                    "response": "I'm sorry, processing your request took too long. Please try a simpler question.",
+                    "error_type": "timeout"
+                }
+            return {
+                "response": "I'm sorry, I encountered an error processing your request.",
+                "error_type": "processing_error"
+            }
+            
+        return result
+    except Exception as e:
+        logger.error(f"Error in process_chat: {str(e)}")
+        return {
+            "response": "I'm sorry, I encountered an unexpected error.",
+            "error_type": "general_error"
+        }

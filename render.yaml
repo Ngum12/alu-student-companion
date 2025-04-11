@@ -2,15 +2,10 @@ services:
   - type: web
     name: alu-chatbot-backend
     env: python
-    buildCommand: |
-      pip install -r requirements.txt
-      python cache_models.py
+    buildCommand: pip install -r requirements.txt
     startCommand: python server.py
     envVars:
-      - key: DEPLOYMENT_ENV
-        value: render
+      - key: PYTHONUNBUFFERED
+        value: 1
       - key: CORS_ALLOWED_ORIGINS
-        value: https://your-frontend-domain.com
-      - key: TRANSFORMERS_OFFLINE
-        value: "1"
-    healthCheckPath: /health
+        value: http://localhost:3000,http://localhost:3001,https://alu-student-companion.onrender.com
