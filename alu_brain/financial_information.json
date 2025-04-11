@@ -1,0 +1,393 @@
+{
+  "category": "financial_information",
+  "description": "Information about tuition, fees, payment plans, and financial aid",
+  "entries": [
+    {
+      "id": "fin_001",
+      "type": "table_response",
+      "question": "What are the tuition fees?",
+      "answer": "ALU tuition fees vary by campus and program:",
+      "table": {
+        "headers": ["Campus", "Program", "Annual Tuition (USD)"],
+        "rows": [
+          ["Rwanda", "Computer Science", "$12,000"],
+          ["Rwanda", "Global Challenges", "$12,000"],
+          ["Rwanda", "Business Management", "$12,000"],
+          ["Rwanda", "Engineering", "$13,000"],
+          ["Rwanda", "Healthcare Management", "$12,500"],
+          ["Mauritius", "Computer Science", "$15,000"],
+          ["Mauritius", "Global Challenges", "$15,000"],
+          ["Mauritius", "International Business & Trade", "$15,000"],
+          ["Mauritius", "Entrepreneurship", "$15,000"],
+          ["Mauritius", "Environmental Science", "$15,500"]
+        ]
+      },
+      "note": "Additional fees for housing, meals, and student services may apply. Scholarships may significantly reduce these costs."
+    },
+    {
+      "id": "fin_002",
+      "type": "short_response",
+      "question": "When are tuition payments due?",
+      "answer": "Tuition payments are due at the beginning of each term. Fall term payments are due by August 15, Spring term payments are due by January 15, and Summer term payments (if applicable) are due by May 10."
+    },
+    {
+      "id": "fin_003",
+      "type": "procedural_response",
+      "question": "How do I set up a payment plan?",
+      "answer": "To set up a tuition payment plan at ALU:\n1. Contact the Finance Office at finance@alueducation.com\n2. Request the payment plan application form\n3. Complete the form with your preferred payment schedule\n4. Submit the form along with the first installment payment\n5. Await approval confirmation (usually within 5 business days)\n6. Follow the approved payment schedule for remaining installments",
+      "contact": "For questions about payment plans, contact the Finance Office at +250 788 123 456"
+    },
+    {
+      "id": "fin_004",
+      "type": "link_response",
+      "question": "What financial aid options are available?",
+      "answer": "ALU offers various financial aid options including:",
+      "links": [
+        {
+          "text": "ALU Scholarship Portal",
+          "url": "https://scholarships.alueducation.com"
+        },
+        {
+          "text": "External Funding Opportunities",
+          "url": "https://funding.alueducation.com/external"
+        },
+        {
+          "text": "Student Loan Partnerships",
+          "url": "https://finance.alueducation.com/loans"
+        }
+      ]
+    },
+    {
+      "id": "fin_005",
+      "type": "statistical_response",
+      "question": "What are the average costs beyond tuition?",
+      "answer": "Students should budget for these additional costs beyond tuition:",
+      "statistics": [
+        {
+          "metric": "Housing (on-campus, annual average)",
+          "value": "$3,200"
+        },
+        {
+          "metric": "Meal Plan (annual average)",
+          "value": "$2,800"
+        },
+        {
+          "metric": "Books and Supplies (annual estimate)",
+          "value": "$1,200"
+        },
+        {
+          "metric": "Student Services Fee (per year)",
+          "value": "$950"
+        },
+        {
+          "metric": "Health Insurance (annual, if not covered elsewhere)",
+          "value": "$1,500"
+        }
+      ]
+    },
+    {
+      "id": "fin_006",
+      "type": "long_response",
+      "question": "What happens if I can't pay my tuition on time?",
+      "answer": "If you're unable to make your tuition payment by the deadline, ALU has a structured process to address financial difficulties:\n\n1. **Early Communication**: Contact the Finance Office as soon as you anticipate payment issues. Early communication can prevent late fees and registration holds.\n\n2. **Grace Period**: A 14-day grace period applies after the payment deadline during which no late fees are assessed.\n\n3. **Late Payment Fee**: After the grace period, a 5% late fee is applied to the outstanding balance.\n\n4. **Payment Plan Modification**: Students with existing payment plans may request a one-time modification per academic year without penalty.\n\n5. **Emergency Financial Assistance**: The university maintains a limited emergency fund for students facing unexpected financial hardship. Applications are reviewed on a case-by-case basis.\n\n6. **Academic Hold**: If payment is not received within 30 days of the due date, an academic hold may be placed on your account, preventing registration for future courses and access to official transcripts.\n\n7. **Installment Options**: In cases of financial difficulty, the Finance Office may approve breaking a single payment into smaller installments over a short period.\n\nThe university is committed to working with students facing genuine financial difficulties, but it's essential to be proactive and communicate with the Finance Office before missing payment deadlines."
+    },
+    {
+      "id": "fin_007",
+      "type": "factual_response",
+      "question": "What scholarships are available?",
+      "answer": "ALU offers several types of scholarships to support talented students:\n\n1. Merit Scholarships: Based on academic excellence and demonstrated leadership potential, covering 25-100% of tuition.\n\n2. ALU Leadership Scholarship: Full-tuition scholarship awarded to exceptional students who demonstrate outstanding leadership qualities and commitment to Africa's development.\n\n3. Country-Specific Scholarships: Partnerships with governments and organizations that sponsor students from specific countries.\n\n4. Women in STEM Scholarship: Targeted support for female students pursuing degrees in science, technology, engineering, and mathematics fields.\n\n5. Entrepreneurship Scholarship: For students with demonstrated entrepreneurial achievements or exceptional business ideas.\n\n6. Financial Need-Based Aid: Support packages based on demonstrated financial need, determined through the financial aid application process.\n\n7. Corporate Partner Scholarships: Funded by ALU's industry partners for students interested in specific fields or career paths.",
+      "deadline": "Most scholarship applications must be submitted by March 1 for the following academic year"
+    },
+    {
+      "id": "fin_008",
+      "type": "procedural_response",
+      "question": "How do I apply for financial aid?",
+      "answer": "To apply for financial aid at ALU:\n1. Complete your admission application (financial aid applications are considered only after admission)\n2. Log in to the ALU Financial Aid Portal using your applicant credentials\n3. Complete the Financial Need Assessment form with accurate information about family income and expenses\n4. Upload supporting documents (tax returns, bank statements, etc.)\n5. Submit any scholarship-specific applications for scholarships you qualify for\n6. Complete the financial aid interview (if requested)\n7. Await your financial aid package notification, typically sent 3-4 weeks after completing all requirements\n8. Accept your aid package through the portal by the specified deadline\n\nEarly application is strongly recommended as some funding options have limited availability. International students should submit applications at least 3 months before the start of the academic year to allow time for processing.",
+      "contact": "For assistance, contact the Financial Aid Office at financialaid@alueducation.com"
+    },
+    {
+      "id": "fin_009",
+      "type": "factual_response",
+      "question": "Are there work-study opportunities?",
+      "answer": "Yes, ALU offers a robust Work-Study Program that provides students with opportunities to earn money while gaining valuable work experience. Positions are available across campus departments including the library, IT services, admissions, student life, academic support, and administrative offices. Work-study students typically work 10-15 hours per week during the academic year, with opportunities for full-time work during breaks. Pay rates range from $5-$10 USD per hour depending on the position and experience level. To qualify, students must demonstrate financial need through the financial aid application process and maintain good academic standing (minimum 2.5 GPA). Application periods open at the beginning of each term, with priority given to students with higher demonstrated financial need. The Career Development Office also helps students find off-campus part-time employment opportunities with local businesses and organizations.",
+      "note": "International students may have restrictions on off-campus employment based on visa regulations"
+    },
+    {
+      "id": "fin_010",
+      "type": "long_response",
+      "question": "How do student loans work at ALU?",
+      "answer": "ALU has established partnerships with several financial institutions to provide student loan options:\n\n1. ALU Partner Loan Program: Through partnerships with regional banks including Bank of Kigali, KCB Bank, and Commercial Bank of Mauritius, students can access education loans with favorable terms. These loans feature interest rates 2-3% below standard personal loans, extended repayment periods (up to 10 years), and grace periods that extend six months after graduation.\n\n2. Income-Share Agreements (ISAs): For selected programs, ALU offers an innovative financing model where students pay no tuition upfront but agree to pay a fixed percentage of their income (typically 10-15%) for a set period after graduation (usually 3-5 years), but only when earning above a minimum threshold. This aligns the university's financial success with graduate outcomes.\n\n3. International Student Loan Program: For international students, ALU partners with global education finance providers that offer loans requiring no local collateral or co-signers from the host country.\n\n4. Government-Backed Loan Programs: Students from several African countries can access government student loan programs that have agreements with ALU, including the Higher Education Loans Board (Kenya), Student Financing Agency for Rwanda, and Ghana Student Loan Trust.\n\nThe application process for student loans requires:\n\n- Completion of ALU's financial aid application\n- Meeting with a financial counselor to determine appropriate loan amounts\n- Submission of required documentation to the lending partner\n- Loan counseling to ensure understanding of repayment obligations\n\nALU strongly encourages students to borrow responsibly and only take loans for essential educational expenses. The Financial Aid Office provides loan counseling and financial literacy workshops to help students manage their educational debt effectively."
+    },
+    {
+      "id": "fin_011",
+      "type": "factual_response",
+      "question": "What are the payment methods accepted?",
+      "answer": "ALU accepts multiple payment methods to accommodate students from various countries:\n\n1. Bank Transfers: Direct transfers to ALU's accounts in USD, EUR, RWF, or MUR (account details provided upon admission)\n\n2. Online Credit/Debit Card Payments: Through the secure ALU payment portal (Visa, Mastercard, American Express)\n\n3. Mobile Money: Payments through MTN Mobile Money, Airtel Money, and other regional mobile payment platforms\n\n4. International Payment Services: Flywire and TransferWise for international students to make payments in their local currencies\n\n5. Checks: Bank drafts or certified checks payable to 'African Leadership University'\n\n6. Cash Payments: Accepted at campus finance offices (not recommended for large amounts)\n\n7. Payment Plans: Structured installment payments authorized by the Finance Office\n\nAll payments should reference the student's full name and ID number. Processing times vary by method: electronic payments typically reflect within 2-3 business days, while international transfers may take 5-7 business days. The Finance Office issues receipts for all payments received.",
+      "note": "A 3% convenience fee applies to credit card payments to cover processing costs"
+    },
+    {
+      "id": "fin_012",
+      "type": "short_response",
+      "question": "Are there fees for late registration?",
+      "answer": "Yes, ALU charges a late registration fee of $100 for students who register for courses after the official registration period ends. This fee is waived for new students in their first term and for students who have documented extenuating circumstances approved by the Academic Affairs Office. Payment of the late registration fee does not guarantee availability in desired courses, as many courses reach capacity during the regular registration period. Students facing challenges meeting registration deadlines should contact their academic advisor before the deadline to discuss options and potentially avoid the late fee."
+    },
+    {
+      "id": "fin_013",
+      "type": "statistical_response",
+      "question": "What is the typical financial aid package?",
+      "answer": "Financial aid statistics for current ALU students:",
+      "statistics": [
+        {
+          "metric": "Students receiving some form of financial aid",
+          "value": "78%"
+        },
+        {
+          "metric": "Average need-based grant amount",
+          "value": "$8,500"
+        },
+        {
+          "metric": "Average merit scholarship",
+          "value": "$5,200"
+        },
+        {
+          "metric": "Students on full scholarships",
+          "value": "12%"
+        },
+        {
+          "metric": "Students participating in work-study",
+          "value": "45%"
+        },
+        {
+          "metric": "Average student loan amount per year",
+          "value": "$4,300"
+        },
+        {
+          "metric": "Average family contribution",
+          "value": "$3,800"
+        }
+      ],
+      "note": "Financial aid packages are customized based on individual circumstances and may combine multiple forms of aid"
+    },
+    {
+      "id": "fin_014",
+      "type": "procedural_response",
+      "question": "How do I request a refund?",
+      "answer": "To request a refund at ALU:\n1. Log in to your student portal and navigate to the Finance section\n2. Complete the Refund Request Form with the following information:\n   - Amount requested\n   - Reason for refund\n   - Preferred refund method\n   - Banking details (if applicable)\n3. Upload any supporting documentation (e.g., medical certificates for medical withdrawals)\n4. Submit the form for review by the Finance Office\n5. Track the status of your request through the portal\n6. If approved, refunds are typically processed within 14 business days\n\nRefund eligibility and amounts depend on when the withdrawal occurs relative to the academic term:\n- Before classes begin: 100% tuition refund\n- During first week of classes: 90% tuition refund\n- During second week: 75% tuition refund\n- During third week: 50% tuition refund\n- After third week: No refund\n\nNon-refundable fees include the application fee, enrollment deposit, and certain course-specific fees.",
+      "contact": "For refund inquiries, email refunds@alueducation.com"
+    },
+    {
+      "id": "fin_015",
+      "type": "factual_response",
+      "question": "Do you offer family discounts?",
+      "answer": "Yes, ALU offers a Family Discount Program for families with multiple students simultaneously enrolled in undergraduate programs. When two siblings are enrolled concurrently, the second student receives a 10% discount on tuition. For three or more siblings enrolled simultaneously, each additional sibling beyond the first receives a 15% discount. The discount applies to the student(s) with the lower tuition rate when program costs differ. To qualify, students must be biological or legally adopted siblings and provide documentation confirming their relationship. The discount is automatically renewed each year as long as all siblings maintain full-time enrollment and good academic standing. The family discount cannot be combined with certain other scholarship programs but may be used alongside need-based financial aid.",
+      "note": "Step-siblings qualify if their parents are legally married and both are legal guardians"
+    }
+  ],
+  "institution": {
+    "name": "African Leadership University",
+    "abbreviation": "ALU",
+    "overview": "ALU is dedicated to developing ethical and entrepreneurial leaders for Africa. The university hosts a variety of events and programs annually to foster leadership, innovation, and community engagement."
+  },
+  "annual_events_and_programs": [
+    {
+      "name": "Global Leadership Program",
+      "description": "A month-long leadership and entrepreneurship immersion held annually in Silicon Valley. Selected students engage with industry leaders, visit top tech companies, and participate in workshops and mentorship programs.",
+      "location": "Silicon Valley, USA",
+      "month_held": "April",
+      "eligibility": "20 exceptional ALU students selected based on merit.",
+      "activities": [
+        "Company visits to organizations like Microsoft, Google, and Netflix.",
+        "Workshops on leadership and innovation.",
+        "Networking events with Silicon Valley leaders."
+      ],
+      "references": [
+        {
+          "title": "Join our Global Leadership Program",
+          "url": "https://www.alueducation.com/global-leadership-programme/"
+        }
+      ]
+    },
+    {
+      "name": "Healthcare Entrepreneurship Hackathon",
+      "description": "An initiative to develop innovative solutions to challenges in Africa's healthcare sector. Participants collaborate to create sustainable healthcare ventures.",
+      "location": "Kigali, Rwanda",
+      "month_held": "February",
+      "eligibility": "Open to students and professionals passionate about healthcare innovation.",
+      "activities": [
+        "Team-based problem-solving sessions.",
+        "Mentorship from healthcare and entrepreneurship experts.",
+        "Pitch presentations to a panel of judges."
+      ],
+      "references": [
+        {
+          "title": "African Leadership University (ALU) Healthcare Entrepreneurship Hackathon in Kigali, Rwanda",
+          "url": "https://africahealthcollaborative.org/2024/02/06/african-leadership-university-alu-healthcare-entrepreneurship-hackathon-in-kigali-rwanda/"
+        }
+      ]
+    },
+    {
+      "name": "TEDxALURwanda",
+      "description": "An independently organized TEDx event showcasing innovative and disruptive ideas from the ALU community and beyond.",
+      "location": "Kigali, Rwanda",
+      "month_held": "November",
+      "eligibility": "Open to the public; speakers selected through an application process.",
+      "activities": [
+        "Talks from thought leaders and innovators.",
+        "Networking opportunities.",
+        "Workshops and interactive sessions."
+      ],
+      "references": [
+        {
+          "title": "About TED - TEDx ALU Rwanda",
+          "url": "https://www.tedxalurwanda.com/about"
+        }
+      ]
+    },
+    {
+      "name": "Decennial Celebration",
+      "description": "A celebration marking 10 years of impact, innovation, and leadership by ALU.",
+      "location": "Mauritius",
+      "month_held": "October",
+      "eligibility": "Open to ALU alumni, students, staff, and invited guests.",
+      "activities": [
+        "Alumni reunions.",
+        "Panel discussions on ALU's journey and future.",
+        "Gala dinner and cultural performances."
+      ],
+      "references": [
+        {
+          "title": "10 Years of Impact, Innovation & Leadership!",
+          "url": "https://www.instagram.com/alueducation/reel/DHvenkAISrT/"
+        }
+      ]
+    },
+    {
+      "name": "Application Webinars",
+      "description": "Interactive sessions guiding prospective students through the application process for ALU's programs.",
+      "location": "Online",
+      "months_held": ["January", "February", "March"],
+      "eligibility": "Open to all prospective students.",
+      "activities": [
+        "Step-by-step application guidance.",
+        "Q&A sessions with admissions officers.",
+        "Tips on crafting a compelling application."
+      ],
+      "references": [
+        {
+          "title": "Events Archives - African Leadership University",
+          "url": "https://www.alueducation.com/category/events/"
+        }
+      ]
+    },
+    {
+      "name": "Parents Seminar on Innovative Education",
+      "description": "A seminar aimed at informing parents about ALU's innovative educational approach and its benefits.",
+      "location": "Kigali, Rwanda",
+      "month_held": "March",
+      "eligibility": "Open to parents of current and prospective students.",
+      "activities": [
+        "Presentations on ALU's educational model.",
+        "Q&A sessions with faculty and staff.",
+        "Campus tours."
+      ],
+      "references": [
+        {
+          "title": "Join Us for our Parents Seminar on Innovative Education",
+          "url": "https://www.instagram.com/alueducation/p/DHoLk_0MweH/"
+        }
+      ]
+    },
+    {
+      "name": "Swiss Africa Business Case Challenge",
+      "description": "A competition where ALU students engage with industry leaders to develop solutions for real-world business challenges.",
+      "location": "Switzerland",
+      "month_held": "June",
+      "eligibility": "Selected ALU students based on a competitive application process.",
+      "activities": [
+        "City tours and cultural immersion.",
+        "Workshops on business strategy and negotiation.",
+        "Team presentations to industry panels."
+      ],
+      "references": [
+        {
+          "title": "ALU & ALC's Students' Journey at Swiss Africa Business Case Challenge 2023",
+          "url": "https://www.alueducation.com/events-calendar/"
+        }
+      ]
+    },
+    {
+      "name": "Political Campaign Leadership Development Program",
+      "description": "An executive course designed to unlock political leadership potential, offered in partnership with Shikamo.",
+      "location": "Online",
+      "month_held": "May",
+      "eligibility": "Aspiring political leaders and campaign managers.",
+      "activities": [
+        "Lectures from experienced political strategists.",
+        "Case studies of successful campaigns.",
+        "Networking with peers and mentors."
+      ],
+      "references": [
+        {
+          "title": "Unlock Your Political Leadership Potential with ALU School of Business' Executive Course",
+          "url": "https://www.alueducation.com/events-calendar/"
+        }
+      ]
+    },
+    {
+      "name": "Creative Arts Program",
+      "description": "A 6-week course aimed at nurturing creativity among Rwandan youth.",
+      "location": "Kigali, Rwanda",
+      "month_held": "July",
+      "eligibility": "Open to young creatives in Rwanda.",
+      "activities": [
+        "Workshops on various art forms.",
+        "Mentorship from established artists.",
+        "Showcase events to present creative works."
+      ],
+      "references": [
+        {
+          "title": "Announcing the perfect programme for all creatives in Rwanda!",
+          "url": "https://www.instagram.com/alueducation/p/DB_hTXBKE99/"
+        }
+      ]
+    },
+    {
+      "name": "Africa Innovation Summit",
+      "description": "An annual gathering of innovators, entrepreneurs, investors, and policy makers focused on driving innovation across Africa.",
+      "location": "Kigali, Rwanda",
+      "month_held": "September",
+      "eligibility": "Open to innovators, entrepreneurs, and industry leaders across Africa.",
+      "activities": [
+        "Keynote presentations from leading innovators.",
+        "Innovation showcases and demonstrations.",
+        "Networking and partnership development.",
+        "Investor pitch sessions."
+      ],
+      "references": [
+        {
+          "title": "Africa Innovation Summit - Driving Africa's Development Through Innovation",
+          "url": "https://www.alueducation.com/innovation-summit/"
+        }
+      ]
+    },
+    {
+      "name": "Financial Aid Workshop Series",
+      "description": "Workshops designed to help prospective and current students navigate financial aid options and processes.",
+      "location": "Online and On-campus",
+      "months_held": ["November", "December", "April"],
+      "eligibility": "Open to prospective students, current students, and parents.",
+      "activities": [
+        "Scholarship application guidance.",
+        "Financial planning sessions.",
+        "One-on-one consultations with financial aid advisors.",
+        "Student loan information sessions."
+      ],
+      "references": [
+        {
+          "title": "Financial Aid Workshops - Making ALU Affordable",
+          "url": "https://finance.alueducation.com/workshops"
+        }
+      ]
+    }
+  ]
+}

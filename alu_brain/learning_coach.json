@@ -1,0 +1,120 @@
+{
+    "category": "institution_overview",
+    "description": "Detailed information about African Leadership University (ALU), including its founder, significance, and partnerships.",
+    "entries": [
+      {
+        "id": "alu_001",
+        "type": "factual_response",
+        "question": "Who founded the African Leadership University?",
+        "answer": "African Leadership University (ALU) was founded by Fred Swaniker, a Ghanaian entrepreneur and educationist, in 2015. Swaniker's vision was to develop ethical and entrepreneurial leaders for Africa by providing innovative and practice-oriented education."
+      },
+      {
+        "id": "alu_002",
+        "type": "long_response",
+        "question": "What is the significance of African Leadership University in higher education?",
+        "answer": "ALU represents a transformative approach to higher education in Africa. By emphasizing leadership, entrepreneurship, and real-world problem-solving, ALU aims to equip students with the skills necessary to address the continent's challenges. Its curriculum departs from traditional academic models, focusing on practical experiences and missions rather than conventional majors. This innovative model positions ALU as a pioneer in reshaping African higher education."
+      },
+      {
+        "id": "alu_003",
+        "type": "link_response",
+        "question": "Where can I learn more about ALU's mission and vision?",
+        "links": [
+          {
+            "text": "ALU Official Website",
+            "url": "https://www.alueducation.com/"
+          },
+          {
+            "text": "TIME Article on ALU's Impact",
+            "url": "https://time.com/5603886/african-leadership-university-mauritius-fred-swaniker/"
+          }
+        ]
+      },
+      {
+        "id": "alu_004",
+        "type": "table_response",
+        "question": "What are some of ALU's key partnerships?",
+        "answer": "ALU has established several strategic partnerships to enhance its educational offerings and impact:",
+        "table": {
+          "headers": ["Partner", "Description", "Reference"],
+          "rows": [
+            [
+              "Elevate Africa",
+              "Collaborated to design a leadership curriculum aimed at refining the capabilities of mid-career professionals across various sectors.",
+              "https://www.alueducation.com/african-leadership-university-and-elevate-africa-forge-strategic-partnership-to-advance-leadership-skills-across-the-continent/"
+            ],
+            [
+              "Government of Rwanda",
+              "Partnered to promote education, research, and entrepreneurship for biodiversity conservation and green economy solutions.",
+              "https://www.environment.gov.rw/news-detail/rwanda-launched-a-partnership-with-african-leadership-university-to-accelerate-the-pathways-towards-a-circular-and-green-economy"
+            ],
+            [
+              "Coursera",
+              "Teamed up to expand access to quality education in Africa through online learning platforms.",
+              "https://www.africa.com/coursera-and-african-leadership-university-partner-to-expand-access-to-education-in-africa/"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "alu_005",
+        "type": "statistical_response",
+        "question": "What impact has ALU had since its inception?",
+        "answer": "Since its founding, ALU has made significant strides in higher education:",
+        "statistics": [
+          {
+            "metric": "Year Established",
+            "value": "2015"
+          },
+          {
+            "metric": "Campuses",
+            "value": "Mauritius and Rwanda"
+          },
+          {
+            "metric": "Alumni Ventures",
+            "value": "Over 140 unique ventures started by alumni"
+          },
+          {
+            "metric": "Jobs Created by Alumni Ventures",
+            "value": "More than 44,000 jobs"
+          },
+          {
+            "metric": "Funds Raised by Alumni Ventures",
+            "value": "Approximately $6 million"
+          }
+        ],
+        "note": "These figures highlight ALU's commitment to fostering entrepreneurial leaders who contribute meaningfully to Africa's development."
+      },
+      {
+        "id": "alu_006",
+        "type": "procedural_response",
+        "question": "How can prospective students apply to ALU?",
+        "answer": "Prospective students interested in joining ALU can follow these steps:\n1. Visit the ALU official website to access the online application portal.\n2. Complete the application form with personal and academic details.\n3. Submit required documents, including academic transcripts, a personal statement, and letters of recommendation.\n4. Participate in an admissions interview, which may be conducted virtually.\n5. Await the admission decision and follow subsequent enrollment procedures upon acceptance.",
+        "deadline": "Application deadlines vary by intake; applicants are advised to check the official website for specific dates."
+      },
+      {
+        "id": "alu_007",
+        "type": "factual_response",
+        "question": "What programs does ALU offer?",
+        "answer": "ALU offers a range of undergraduate programs designed to develop leadership and entrepreneurial skills. These include degrees in Business Management, Computer Science, Entrepreneurial Leadership, International Business and Trade, and Social Sciences. Each program integrates practical experiences with academic learning to prepare students for real-world challenges."
+      },
+      {
+        "id": "alu_008",
+        "type": "long_response",
+        "question": "How does ALU integrate real-world experiences into its curriculum?",
+        "answer": "ALU's curriculum is uniquely designed to blend academic learning with practical experiences. Students engage in 'missions' that focus on solving real-world problems, participate in internships, and collaborate with industry partners. This approach ensures that graduates are not only knowledgeable but also equipped with hands-on experience to tackle challenges in their respective fields."
+      },
+      {
+        "id": "alu_009",
+        "type": "short_response",
+        "question": "Where are ALU's campuses located?",
+        "answer": "ALU has campuses in Pamplemousses, Mauritius, and Kigali, Rwanda."
+      },
+      {
+        "id": "alu_010",
+        "type": "factual_response",
+        "question": "What is ALU's mission?",
+        "answer": "ALU's mission is to develop ethical and entrepreneurial leaders who will drive Africa's transformation by solving the continent's most pressing challenges."
+      }
+    ]
+  }
+  

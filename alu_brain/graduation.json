@@ -1,0 +1,301 @@
+{
+    "category": "graduation",
+    "description": "Information about ALU's graduation process, requirements, ceremonies, and post-graduation opportunities",
+    "entries": [
+      {
+        "id": "grad_001",
+        "type": "short_response",
+        "question": "What are the basic graduation requirements at ALU?",
+        "answer": "To graduate from ALU, you must complete all required courses in your academic program (120 credits minimum), maintain a cumulative GPA of at least 2.0, complete your Leadership Challenge capstone project, fulfill all financial obligations to the university, submit graduation application by the deadline, complete at least two internships (Missions), and fulfill the community service requirement of 100 hours minimum."
+      },
+      {
+        "id": "grad_002",
+        "type": "table_response",
+        "question": "What are the different classes of degrees at ALU?",
+        "answer": "ALU awards degrees with the following classifications based on cumulative GPA:",
+        "table": {
+          "headers": ["Degree Classification", "Cumulative GPA Range"],
+          "rows": [
+            ["First Class Honours", "3.70 - 4.00"],
+            ["Upper Second Class Honours (2:1)", "3.30 - 3.69"],
+            ["Lower Second Class Honours (2:2)", "3.00 - 3.29"],
+            ["Third Class Honours", "2.70 - 2.99"],
+            ["Pass", "2.00 - 2.69"]
+          ]
+        },
+        "note": "These classifications are indicated on your official transcript and degree certificate."
+      },
+      {
+        "id": "grad_003",
+        "type": "long_response",
+        "question": "What is the Leadership Challenge capstone project?",
+        "answer": "The Leadership Challenge is ALU's distinctive capstone project that all students must complete to graduate, regardless of their program of study. This culminating experience synthesizes your academic learning, leadership development, and practical skills into a meaningful impact project.\n\nThe Leadership Challenge has these key elements:\n\n1. Problem Identification: You identify a significant challenge affecting Africa or your local community related to your field of study. This could be in education, healthcare, technology, environmental sustainability, business, or another relevant sector.\n\n2. Research Phase: Conduct comprehensive research to understand the root causes, stakeholders, and existing approaches to addressing the challenge. This includes both academic research and fieldwork with affected communities.\n\n3. Solution Design: Develop an innovative, sustainable solution to address the identified challenge. Your solution must be practical, scalable, and demonstrate entrepreneurial thinking.\n\n4. Implementation: Execute a prototype or pilot of your solution in the real world. This implementation phase typically lasts 3-6 months and involves engagement with actual stakeholders and beneficiaries.\n\n5. Impact Assessment: Measure and analyze the outcomes of your implementation, identifying both successes and areas for improvement. Develop recommendations for future scaling or iteration of your solution.\n\n6. Documentation and Presentation: Produce a comprehensive written report and deliver a final presentation to a panel of faculty, external experts, and community members.\n\nThe Leadership Challenge begins in your penultimate term and continues through your final term. You'll be assigned a faculty advisor and potentially an industry mentor to guide your project. All Leadership Challenge projects must demonstrate ALU's core values of entrepreneurial leadership, ethical impact, and solution-oriented thinking.\n\nExemplary Leadership Challenge projects are showcased at ALU's annual Innovation Exhibition and may receive support for continued development beyond graduation."
+      },
+      {
+        "id": "grad_004",
+        "type": "procedural_response",
+        "question": "How do I apply for graduation?",
+        "answer": "To apply for graduation at ALU, follow these steps:\n1. Log into your student portal at least 6 months before your expected graduation date\n2. Navigate to 'Academic Services' and select 'Apply for Graduation'\n3. Review your degree audit to ensure all requirements are completed or in progress\n4. Complete the Graduation Application Form with your information as it should appear on your diploma\n5. Pay the graduation processing fee (approximately $100 USD)\n6. Submit your cap and gown measurements through the provided form\n7. Complete the Graduate Exit Survey\n8. Schedule an appointment with your academic advisor for a final graduation check\n9. Request official transcripts from any transfer institutions if not already on file\n10. Clear any outstanding holds on your account (financial, library, etc.)\n11. Monitor your ALU email for confirmation and further instructions",
+        "deadline": "Fall Term Graduates: Apply by August 1; Spring Term Graduates: Apply by January 15"
+      },
+      {
+        "id": "grad_005",
+        "type": "factual_response",
+        "question": "When does the graduation ceremony take place?",
+        "answer": "ALU holds two graduation ceremonies each year. The main ceremony takes place in late May or early June, primarily for spring term graduates but also welcoming fall graduates who choose to participate. A smaller ceremony is held in December for fall graduates. Both ceremonies take place at the main campus in Rwanda or Mauritius (alternating yearly between campuses). The ceremony typically lasts 2-3 hours and includes speeches from university leadership, distinguished guests, and selected student representatives. Graduates are individually recognized as they cross the stage to receive their diplomas. Each graduate may invite up to four guests to attend the ceremony in person. For those unable to attend, the ceremony is livestreamed on ALU's official website and YouTube channel.",
+        "note": "The specific date of each ceremony is announced at least 4 months in advance to allow graduates and families time to make travel arrangements."
+      },
+      {
+        "id": "grad_006",
+        "type": "statistical_response",
+        "question": "What are the graduation rates at ALU?",
+        "answer": "ALU's graduation statistics demonstrate strong student outcomes:",
+        "statistics": [
+          {
+            "metric": "Four-year graduation rate",
+            "value": "83%"
+          },
+          {
+            "metric": "Five-year graduation rate",
+            "value": "89%"
+          },
+          {
+            "metric": "Six-year graduation rate",
+            "value": "92%"
+          },
+          {
+            "metric": "Average time to graduation",
+            "value": "4.2 years"
+          },
+          {
+            "metric": "Graduates completing at least one internship",
+            "value": "100%"
+          },
+          {
+            "metric": "Graduates employed within six months",
+            "value": "87%"
+          },
+          {
+            "metric": "Graduates pursuing further education within two years",
+            "value": "15%"
+          }
+        ],
+        "note": "These statistics are based on the most recent graduating cohorts and are updated annually."
+      },
+      {
+        "id": "grad_007",
+        "type": "long_response",
+        "question": "What is the graduation clearance process?",
+        "answer": "The graduation clearance process at ALU ensures that all requirements have been met before a degree is conferred. This comprehensive check involves multiple departments and begins approximately 3 months before graduation.\n\nThe clearance process includes:\n\n1. Academic Clearance: The Registrar's Office verifies that you have:\n   - Completed all required courses for your degree program\n   - Achieved the minimum cumulative GPA of 2.0\n   - Successfully completed your Leadership Challenge capstone project\n   - Met all distribution and specialization requirements\n   - Completed the required internships/Missions\n   - Fulfilled any conditional requirements from admission\n\n2. Financial Clearance: The Finance Office confirms that:\n   - All tuition and fees have been paid in full\n   - There are no outstanding balances for housing, meal plans, or other services\n   - All financial aid requirements have been met\n   - Any applicable student loans have completed exit counseling\n\n3. Library Clearance: The library verifies that:\n   - All borrowed materials have been returned\n   - Any fines or fees have been paid\n\n4. IT Services Clearance: The IT department confirms:\n   - Return of any university-owned technology equipment\n   - Proper transition of university digital accounts\n\n5. Student Affairs Clearance: Student Affairs verifies completion of:\n   - Community service requirements (minimum 100 hours)\n   - Exit interviews and surveys\n   - Housing checkout (if applicable)\n\n6. Career Development Clearance: The Career Center confirms:\n   - Submission of post-graduation plans survey\n   - Completion of professional portfolio\n   - Participation in career readiness assessment\n\nYou can monitor your clearance status through your student portal. Any outstanding issues will be flagged for your attention with instructions on how to resolve them. All clearances must be completed at least two weeks before graduation for your name to appear in the commencement program and for your degree to be conferred."
+      },
+      {
+        "id": "grad_008",
+        "type": "procedural_response",
+        "question": "How do I order my cap and gown?",
+        "answer": "To order your graduation regalia at ALU:\n1. Log in to the Graduation Portal through your student account\n2. Select 'Order Regalia' from the menu options\n3. Complete the measurement form with your height, weight, and head circumference\n4. Choose any optional items (honor cords will be automatically added based on eligibility)\n5. Review your order summary\n6. Submit your order by the deadline (typically 8-10 weeks before ceremony)\n7. Pay the regalia fee if not included in your graduation fee ($45-65 depending on degree)\n8. Receive confirmation email with pickup instructions\n9. Collect your regalia during Graduation Week from the designated distribution point\n10. Try on your regalia immediately and report any issues to the Graduation Committee\n\nInternational students or those unable to be on campus can arrange for shipping at an additional cost. All regalia must be returned after the ceremony unless you choose to purchase it permanently (optional).",
+        "deadline": "Regalia orders must be submitted at least 8 weeks before the ceremony date"
+      },
+      {
+        "id": "grad_009",
+        "type": "factual_response",
+        "question": "What are Latin honors at ALU?",
+        "answer": "ALU awards Latin honors to recognize exceptional academic achievement. These distinctions are based solely on cumulative GPA and are noted on both the diploma and transcript. The Latin honors awarded are:\n\n1. Summa Cum Laude (with highest distinction): Awarded to graduates with a cumulative GPA of 3.90 - 4.00. These graduates wear a gold honor cord at the ceremony.\n\n2. Magna Cum Laude (with great distinction): Awarded to graduates with a cumulative GPA of 3.75 - 3.89. These graduates wear a silver honor cord at the ceremony.\n\n3. Cum Laude (with distinction): Awarded to graduates with a cumulative GPA of 3.60 - 3.74. These graduates wear a bronze honor cord at the ceremony.\n\nTo be eligible for Latin honors, students must complete at least 60 credit hours at ALU (transfer students with fewer ALU credits are not eligible). Additionally, candidates for Latin honors must have no academic integrity violations on their record. The honors designation is calculated based on the GPA at the end of the penultimate term, and final verification occurs after all grades are submitted in the final term.",
+        "note": "Approximately 25% of each graduating class receives Latin honors."
+      },
+      {
+        "id": "grad_010",
+        "type": "table_response",
+        "question": "What are the graduation projects for different programs?",
+        "answer": "While all ALU students complete the Leadership Challenge, each academic program has additional specialized graduation projects:",
+        "table": {
+          "headers": ["Program", "Project Type", "Description", "Evaluation Criteria"],
+          "rows": [
+            ["Computer Science", "Software Development Capstone", "Build a comprehensive software solution addressing a specific problem. Projects range from mobile applications to AI systems.", "Technical complexity, code quality, user experience, problem relevance, innovation"],
+            ["Global Challenges", "Policy Brief & Implementation Plan", "Develop a detailed policy recommendation for a specific challenge and a practical implementation strategy.", "Research depth, stakeholder analysis, feasibility, potential impact, innovation"],
+            ["Business Management", "Business Plan or Consulting Project", "Create a complete business plan for a new venture or deliver a consulting project for an existing organization.", "Market analysis, financial modeling, strategy development, presentation quality"],
+            ["International Business & Trade", "Trade Analysis & Strategy", "Analyze international market opportunities and develop a comprehensive market entry or trade enhancement strategy.", "Market research, regulatory analysis, financial projections, risk assessment"],
+            ["Engineering", "Engineering Design Project", "Design and prototype an engineering solution to a real-world problem, particularly focused on African contexts.", "Technical soundness, sustainability, cost-effectiveness, innovation, feasibility"],
+            ["Entrepreneurship", "Venture Launch", "Develop and launch a minimum viable product or service with real customers and initial traction.", "Market validation, business model viability, execution quality, growth potential"],
+            ["Healthcare Management", "Healthcare System Improvement", "Analyze a healthcare delivery challenge and implement a solution in partnership with a healthcare organization.", "Stakeholder engagement, implementation success, scalability, evidence base"],
+            ["Environmental Science", "Environmental Impact Project", "Research an environmental challenge and implement a community-based solution with measurable results.", "Scientific rigor, community engagement, measurable impact, sustainability"]
+          ]
+        },
+        "note": "All projects require faculty approval and regular progress reviews throughout the final year."
+      },
+      {
+        "id": "grad_011",
+        "type": "long_response",
+        "question": "What events are part of graduation week?",
+        "answer": "Graduation Week at ALU is a celebratory time filled with events to honor graduates and welcome their families to campus. The typical schedule includes:\n\n1. Graduate Symposium (Monday): Graduating students present their capstone projects and Leadership Challenge outcomes to the university community, industry partners, and family members. This showcases the innovative work students have accomplished and provides visibility for projects with ongoing impact potential.\n\n2. Pan-African Cultural Celebration (Tuesday): An evening of performances, art exhibitions, and culinary experiences celebrating the diverse cultures represented at ALU. Graduating students share elements of their cultural heritage through various artistic expressions.\n\n3. Alumni Induction Ceremony (Wednesday): A special event where graduates are formally welcomed into the ALU Alumni Network. This includes networking with successful alumni, panel discussions on post-graduation transitions, and the presentation of alumni pins and welcome packages.\n\n4. Faculty Honors Reception (Wednesday evening): An invitation-only event for graduates receiving honors and awards, along with their families and faculty mentors. Academic excellence and leadership contributions are recognized in an intimate setting.\n\n5. Community Impact Day (Thursday): Graduates lead service projects in the local community, often connected to their Leadership Challenge work, leaving a lasting legacy of impact.\n\n6. Graduation Rehearsal (Thursday afternoon): A mandatory practice session for all graduates to understand the ceremony logistics, procession order, and procedures.\n\n7. President's Reception (Thursday evening): A formal gathering hosted by the university president to honor graduates and their families, with special recognition for exceptional student achievements.\n\n8. Graduation Ceremony (Friday): The main commencement event where degrees are conferred, including procession, speeches, individual recognition of graduates, and the ceremonial turning of tassels.\n\n9. Departmental Celebrations (Friday afternoon): Smaller gatherings organized by academic departments where program-specific awards are presented and graduates are individually recognized by their faculty.\n\n10. Graduation Gala (Friday evening): The final celebration featuring dinner, dancing, and entertainment to mark the completion of the ALU journey.\n\nFamily members are welcome to attend most events, and a special Parent and Family Orientation is held on Monday morning to provide context about ALU's educational model and the significance of various graduation traditions."
+      },
+      {
+        "id": "grad_012",
+        "type": "factual_response",
+        "question": "How do I get my diploma after graduation?",
+        "answer": "At ALU, diplomas are not distributed during the graduation ceremony. Instead, graduates receive a symbolic diploma cover during the ceremony, while actual diplomas are processed and distributed afterward. Diplomas are typically ready 6-8 weeks after the graduation ceremony, once all final grades are submitted, degree requirements are verified, and financial clearances are confirmed.\n\nYou have three options for receiving your diploma:\n\n1. In-person pickup at the Registrar's Office (requires photo ID)\n\n2. Authorization of a designated person to collect on your behalf (requires signed authorization letter and both parties' photo IDs)\n\n3. Shipping to your preferred address (additional fees apply based on destination)\n\nTo arrange for diploma delivery, you must update your post-graduation contact information in the student portal before graduation. If shipping is selected, tracking information will be provided via email. Diplomas are shipped in protective packaging to prevent damage.\n\nIf you need proof of graduation before your diploma is ready, you can request an official letter confirming degree completion from the Registrar's Office, which is usually available within two weeks after graduation. This letter is often sufficient for employment or graduate school verification purposes.",
+        "note": "Diplomas are only issued once, so secure storage is recommended. Replacement diplomas cost $75 USD and require documentation verifying identity."
+      },
+      {
+        "id": "grad_013",
+        "type": "link_response",
+        "question": "Where can I find resources about graduation?",
+        "answer": "ALU provides several resources with detailed graduation information:",
+        "links": [
+          {
+            "text": "Graduation Requirements Checklist",
+            "url": "https://www.alueducation.com/academics/graduation-requirements"
+          },
+          {
+            "text": "Commencement Ceremony Information",
+            "url": "https://www.alueducation.com/student-life/commencement"
+          },
+          {
+            "text": "Career Services for Graduating Students",
+            "url": "https://careers.alueducation.com/graduating-students"
+          },
+          {
+            "text": "Alumni Network Portal",
+            "url": "https://alumni.alueducation.com"
+          },
+          {
+            "text": "Leadership Challenge Guidelines",
+            "url": "https://www.alueducation.com/academics/leadership-challenge"
+          }
+        ],
+        "note": "The Graduation Handbook with comprehensive information is distributed to all applying graduates and is also available in digital format through the student portal."
+      },
+      {
+        "id": "grad_014",
+        "type": "procedural_response",
+        "question": "What should I do in the final term before graduation?",
+        "answer": "During your final term before graduation, complete these essential tasks:\n1. Meet with your academic advisor to conduct a degree audit (first 2 weeks)\n2. Submit your graduation application through the student portal (by week 3)\n3. Complete the Graduate Exit Survey (by week 4)\n4. Finalize your Leadership Challenge project and prepare for final presentation (ongoing)\n5. Complete any remaining program-specific capstone requirements (ongoing)\n6. Update your professional portfolio and resume with Career Services (by week 6)\n7. Attend the \"Transition to Career\" workshop series (weeks 5-9)\n8. Clear any holds on your account (library fines, tuition balances, etc.) (by week 10)\n9. Complete loan exit counseling if applicable (by week 10)\n10. Order graduation regalia (by week 8)\n11. Submit your post-graduation contact information (by week 10)\n12. Complete Alumni Network registration (by week 12)\n13. Attend graduation rehearsal (final week)\n14. Return all university property (equipment, books, keys) (by last day of classes)\n15. Back up all academic work from university systems (by last day of classes)\n\nEnsure all coursework is completed by the established deadlines, as faculty must submit final grades for graduating students earlier than for continuing students.",
+        "deadline": "All requirements must be completed at least one week before the end of the term"
+      },
+      {
+        "id": "grad_015",
+        "type": "factual_response",
+        "question": "Can I graduate in absentia?",
+        "answer": "Yes, ALU allows students to graduate in absentia (without attending the ceremony) if they cannot be physically present due to circumstances such as visa issues, financial constraints, personal emergencies, or early career commitments. To graduate in absentia, you must still complete all academic requirements and the graduation clearance process. Additionally, you need to formally notify the Registrar's Office of your intention to graduate in absentia by submitting the \"Graduation in Absentia Form\" at least 30 days before the ceremony. Your name will still be included in the commencement program with an asterisk indicating in absentia status. Your diploma will be processed on the same timeline as those for attending graduates and can be collected or shipped according to your preference. If your circumstances change and you become able to attend, you can request to participate in the ceremony up to two weeks before the event, subject to availability. There is no reduction in graduation fees for graduating in absentia.",
+        "note": "Students graduating in absentia may participate in a future ceremony within two years by submitting a request to the Registrar."
+      },
+      {
+        "id": "grad_016",
+        "type": "procedural_response",
+        "question": "How do I request official transcripts after graduation?",
+        "answer": "To request official transcripts after graduation:\n1. Visit the ALU Alumni Portal (alumni.alueducation.com)\n2. Log in using your alumni credentials\n3. Navigate to \"Academic Records\" section\n4. Select \"Request Official Transcript\"\n5. Specify the number of transcripts needed\n6. Enter recipient information for each transcript\n7. Select delivery method (electronic or physical)\n8. Pay the transcript fee ($10 per electronic copy, $15 per physical copy)\n9. For electronic delivery: Provide recipient email addresses\n10. For physical delivery: Provide complete mailing addresses\n11. Submit your request and note the confirmation number\n\nAlternatively, you can download the Transcript Request Form from the ALU website and submit it via email to transcripts@alueducation.com. Processing typically takes 3-5 business days for electronic transcripts and 5-7 business days for physical transcripts, plus delivery time. Rush processing (24-hour turnaround) is available for an additional $15 fee.",
+        "note": "Transcripts cannot be issued if you have outstanding financial obligations to the university."
+      },
+      {
+        "id": "grad_017",
+        "type": "short_response",
+        "question": "What if I don't meet all graduation requirements?",
+        "answer": "If you don't meet all graduation requirements by the end of your final term, you will be notified by the Registrar's Office about your specific deficiencies. You have several options depending on the nature of the unmet requirements: For minor course deficiencies (6 credits or less), you may participate in the ceremony but will receive your degree only after completing the requirements, typically within the following term. For major deficiencies, your graduation will be deferred to the next cycle after completion of all requirements. If you're missing only the Leadership Challenge or program capstone, you may be granted a one-term extension to complete it. Financial holds must be resolved before a degree is conferred, though payment plans can sometimes be arranged. The Registrar and your academic advisor will work with you to create a completion plan with specific deadlines."
+      },
+      {
+        "id": "grad_018",
+        "type": "long_response",
+        "question": "What post-graduation support does ALU offer?",
+        "answer": "ALU provides extensive support to graduates as they transition to the next phase of their journey:\n\n1. Career Services Access: Graduates retain access to ALU's Career Development Services for two years post-graduation. This includes job search assistance, resume reviews, interview preparation, salary negotiation support, and access to the ALU job portal with exclusive opportunities from partner organizations.\n\n2. ALU Alumni Network: All graduates are automatically enrolled in the global ALU Alumni Network, which provides:\n   - Professional networking opportunities across industries and countries\n   - Mentorship programs connecting recent graduates with established alumni\n   - Regional chapters organizing local events and connections\n   - Access to continuing education and professional development resources\n   - Alumni-exclusive events, webinars, and speaker series\n\n3. Entrepreneurship Incubation: Graduates developing ventures can apply for continued support through ALU's Entrepreneurship Center, including:\n   - Workspace access at ALU innovation hubs (subject to availability)\n   - Continued mentorship from faculty entrepreneurs\n   - Connections to potential investors and partners\n   - Access to prototyping facilities and resources\n\n4. Graduate School Advising: For those pursuing advanced degrees, ALU provides:\n   - Graduate school application guidance\n   - Scholarship and funding opportunity information\n   - Letters of recommendation coordination\n   - Test preparation resources\n\n5. Lifelong Learning: Graduates receive:\n   - Discounted rates on ALU continuing education courses\n   - Priority access to professional certificate programs\n   - Invitations to academic conferences and symposia\n   - Digital library access for one year post-graduation\n\n6. Global Opportunities: ALU facilitates:\n   - International fellowship applications\n   - Global leadership program nominations\n   - Exchange opportunities with partner institutions\n   - Representation at global conferences and events\n\n7. \"First Year Out\" Support Program: This structured program for recent graduates includes:\n   - Monthly check-in sessions with dedicated advisors\n   - Peer support groups for common transition challenges\n   - Financial management and loan repayment guidance\n   - Work-life balance and wellbeing resources\n\nTo access these resources, graduates should maintain updated contact information in the Alumni Portal and participate in the annual alumni survey, which helps ALU continue to refine and expand post-graduation support services."
+      },
+      {
+        "id": "grad_019",
+        "type": "factual_response",
+        "question": "What is the distinction between graduation and commencement?",
+        "answer": "At ALU, \"graduation\" and \"commencement\" refer to different aspects of the degree completion process. Graduation is the official act of conferring a degree upon a student who has successfully completed all academic requirements. This is an administrative process that involves final verification of credits, GPA, and other requirements, resulting in the official awarding of a degree that appears on your transcript. Graduation occurs when all requirements are certified as complete, regardless of participation in any ceremony.\n\nCommencement, on the other hand, refers to the formal ceremony celebrating this achievement. It's a ceremonial event where graduates wear academic regalia, are individually recognized, and symbolically receive their degrees through the presentation of diploma covers. The commencement ceremony includes traditions such as the processional, speeches, turning of tassels, and recessional.\n\nImportantly, participation in the commencement ceremony does not automatically mean a student has graduated. Some students who participate in commencement may have pending requirements to complete before their degree is officially conferred. Conversely, students who have officially graduated may choose not to attend commencement, graduating in absentia.\n\nOn official documentation, the graduation date reflects when degree requirements were completed and verified, not the date of the commencement ceremony.",
+        "note": "ALU holds commencement ceremonies twice yearly, but degrees can be conferred at the end of any term when all requirements are met."
+      },
+      {
+        "id": "grad_020",
+        "type": "table_response",
+        "question": "What are the graduation fees?",
+        "answer": "ALU graduation involves several fees that students should plan for:",
+        "table": {
+          "headers": ["Fee Type", "Amount (USD)", "What It Covers", "Payment Deadline"],
+          "rows": [
+            ["Graduation Application Fee", "$100", "Processing of graduation application, degree audit, diploma preparation", "Due when submitting graduation application"],
+            ["Regalia Rental Fee", "$65", "Cap, gown, and tassel rental for the ceremony", "8 weeks before ceremony"],
+            ["Regalia Purchase Option", "$150", "Option to permanently keep cap, gown, and tassel", "8 weeks before ceremony"],
+            ["Honor Cords/Stoles", "$25-45", "Honor designations for qualifying students", "6 weeks before ceremony"],
+            ["Graduation Photography Package", "$75-200", "Professional photos during ceremony (optional)", "Available for pre-order or on-site"],
+            ["Diploma Frame", "$85-150", "Official ALU diploma frame (optional)", "Available for purchase year-round"],
+            ["Extra Diploma Copies", "$50", "Additional original diploma copies (optional)", "Can be ordered after graduation"],
+            ["Diploma Shipping", "$30-100", "International shipping for diplomas (if not collecting in person)", "Due when requesting shipping"],
+            ["Graduation Guest Tickets", "First 4 free, $25 each additional", "Admission to the ceremony for guests", "4 weeks before ceremony"]
+          ]
+        },
+        "note": "Students with demonstrated financial need may apply for graduation fee waivers or reductions through the Financial Aid Office."
+      },
+      {
+        "id": "grad_021",
+        "type": "procedural_response",
+        "question": "What happens at graduation rehearsal?",
+        "answer": "Graduation rehearsal is mandatory for all participating graduates and typically includes:\n1. Check-in with your department coordinator to receive your name card and seating assignment\n2. Overview of the ceremony schedule and timeline presented by the Graduation Committee\n3. Practice of the processional entrance, including proper walking pace and spacing\n4. Instructions on how to line up alphabetically within your academic program\n5. Demonstration of proper protocol for receiving your diploma cover on stage\n6. Practice of the handshake and photo opportunity with the President/Dean\n7. Guidance on when and how to move the tassel from right to left\n8. Review of the proper way to wear academic regalia (cap, gown, hood, stoles)\n9. Instructions for the recessional exit at the conclusion of the ceremony\n10. Information about photo opportunities before and after the ceremony\n11. Weather contingency plans in case of inclement weather\n12. Distribution of guest tickets and parking information\n13. Opportunity to ask questions about any aspect of the ceremony\n\nThe rehearsal typically lasts 1-2 hours and is scheduled the day before the actual ceremony. Business casual attire is appropriate for the rehearsal. Graduates should bring their regalia to ensure proper fitting but are not required to wear it during rehearsal.",
+        "deadline": "Attendance is mandatory; absences must be approved in advance by the Graduation Coordinator"
+      },
+      {
+        "id": "grad_022",
+        "type": "factual_response",
+        "question": "How many guests can attend the graduation ceremony?",
+        "answer": "Each graduate at ALU is guaranteed four free guest tickets to the commencement ceremony. These tickets are allocated on a first-come, first-served basis during the graduation application process. If you need additional tickets, you can request up to two extra tickets for $25 each, subject to availability. These additional tickets must be requested at least four weeks before the ceremony. For family members or friends who cannot attend in person, ALU provides a free livestream of the entire ceremony accessible through the university website and YouTube channel. The ceremony is also recorded and made available for later viewing. For guests requiring special accommodations (wheelchair access, sign language interpretation, etc.), graduates should indicate these needs during the ticket reservation process. While the main ceremony has limited seating, many of the departmental celebrations afterward have more flexible guest policies. International guests who need visa support letters can request these through the International Student Office at least two months before the ceremony.",
+        "note": "Due to venue capacity constraints, guest tickets cannot be guaranteed beyond the standard allocation, so early requests are recommended."
+      },
+      {
+        "id": "grad_023",
+        "type": "long_response",
+        "question": "How should I prepare for the Leadership Challenge capstone project?",
+        "answer": "Preparing for your Leadership Challenge capstone project should begin well before your final year at ALU. Here's a comprehensive preparation strategy:\n\n1. Early Exploration (Years 1-2):\n   - Pay attention to challenges and opportunities mentioned in your courses that spark your interest\n   - Join student organizations and initiatives related to potential challenge areas\n   - Begin building relationships with faculty members who could serve as advisors\n   - Use course assignments to explore potential challenge areas when possible\n   - Start a digital folder collecting articles, research, and ideas related to your interests\n\n2. Pre-Capstone Preparation (Year 3):\n   - Attend the Leadership Challenge information sessions in your junior year\n   - Complete the Leadership Challenge Preparation course (LEAD 301)\n   - Conduct preliminary research into 2-3 potential challenge areas\n   - Speak with alumni who completed successful Leadership Challenge projects\n   - Connect with community partners or organizations working in your area of interest\n   - Develop research and project management skills through relevant coursework\n   - Consider using your second Mission/internship to explore your challenge area\n\n3. Proposal Development (Beginning of Final Year):\n   - Register for the Leadership Challenge Seminar (LEAD 401)\n   - Develop a clear problem statement focusing on a specific aspect of your chosen challenge\n   - Conduct a thorough literature review and background research\n   - Identify key stakeholders and plan for engagement with affected communities\n   - Create a detailed project timeline with specific milestones and deliverables\n   - Form an advisory team including your faculty advisor and relevant external mentors\n   - Draft and submit your Leadership Challenge proposal for approval\n\n4. Implementation Preparation:\n   - Secure any necessary resources, partnerships, or funding\n   - Develop data collection instruments and evaluation metrics\n   - Complete any required ethics reviews or permissions\n   - Create contingency plans for potential obstacles\n   - Build a support team of peers, community members, and experts\n   - Establish regular check-in schedules with your advisor\n\n5. Documentation Planning:\n   - Set up systems for documenting your process from the beginning\n   - Plan how you'll capture both quantitative and qualitative outcomes\n   - Consider how you'll present your work (video, presentation, report format)\n   - Schedule regular reflection sessions to capture insights throughout the process\n\nThe most successful Leadership Challenge projects typically address genuine needs identified in collaboration with affected communities, have clear and measurable objectives, demonstrate innovation in approach, and show potential for sustainability beyond the project timeframe. Start early, be flexible as you learn and iterate, and focus on creating meaningful impact rather than simply completing a requirement."
+      },
+      {
+        "id": "grad_024",
+        "type": "factual_response",
+        "question": "What is the deadline for completing graduation requirements?",
+        "answer": "All academic requirements for graduation must be completed by the following deadlines:\n\n1. For Spring Term Graduates (May/June Ceremony):\n   - All coursework, including final exams: Last day of the Spring examination period\n   - Leadership Challenge final presentations: Two weeks before the end of Spring term\n   - Program-specific capstone projects: Deadlines set by individual departments, typically 3-4 weeks before term end\n   - Community service hours documentation: Four weeks before graduation\n   - Financial clearance: Two weeks before graduation\n\n2. For Fall Term Graduates (December Ceremony):\n   - All coursework, including final exams: Last day of the Fall examination period\n   - Leadership Challenge final presentations: Two weeks before the end of Fall term\n   - Program-specific capstone projects: Deadlines set by individual departments, typically 3-4 weeks before term end\n   - Community service hours documentation: Four weeks before graduation\n   - Financial clearance: Two weeks before graduation\n\nFaculty must submit final grades for graduating students within 72 hours of final assessments to allow time for degree certification. Any incomplete grades must be resolved by these deadlines. Extensions are rarely granted and require exceptional circumstances with documentation and approval from both the department chair and Dean of Academic Affairs.\n\nStudents who miss these deadlines will have their graduation deferred to the next term when all requirements are complete. However, those who are within 6 credits of completion may participate in the ceremony though their degrees will not be conferred until all requirements are met.",
+        "note": "These deadlines are strictly enforced to ensure proper degree certification before commencement."
+      },
+      {
+        "id": "grad_025",
+        "type": "team_response",
+        "question": "Who should I contact with graduation questions?",
+        "answer": "For graduation-related questions at ALU, contact the appropriate team member based on your specific concern:",
+        "team_members": [
+          {
+            "name": "Dr. Esther Mbugua",
+            "title": "Graduation Coordinator",
+            "contact": "graduation@alueducation.com | +250 789 123 456",
+            "responsibilities": "Overall graduation process, ceremony logistics, application status"
+          },
+          {
+            "name": "Mr. Jean-Pierre Hakizimana",
+            "title": "Registrar",
+            "contact": "registrar@alueducation.com | +250 789 123 457",
+            "responsibilities": "Degree certification, academic requirements verification, diploma processing"
+          },
+          {
+            "name": "Ms. Aisha Diallo",
+            "title": "Financial Clearance Officer",
+            "contact": "studentaccounts@alueducation.com | +250 789 123 458",
+            "responsibilities": "Financial holds, payment plans, graduation fee inquiries"
+          },
+          {
+            "name": "Dr. Thomas Odhiambo",
+            "title": "Leadership Challenge Director",
+            "contact": "leadershipchallenge@alueducation.com | +250 789 123 459",
+            "responsibilities": "Leadership Challenge requirements, presentations, evaluations"
+          },
+          {
+            "name": "Mrs. Fatima Sow",
+            "title": "Alumni Relations Manager",
+            "contact": "alumni@alueducation.com | +250 789 123 460",
+            "responsibilities": "Post-graduation information, alumni network, continuing engagement"
+          },
+          {
+            "name": "Mr. Emmanuel Kwizera",
+            "title": "Regalia and Commencement Materials Coordinator",
+            "contact": "regalia@alueducation.com | +250 789 123 461",
+            "responsibilities": "Cap and gown orders, honor cords, ceremony materials"
+          }
+        ],
+        "note": "For general graduation inquiries, start with the Graduation Coordinator who can direct you to the appropriate person."
+      }
+    ]
+  }

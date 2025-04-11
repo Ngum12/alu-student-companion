@@ -1,0 +1,309 @@
+{
+    "institution": {
+      "name": "African Leadership University",
+      "abbreviation": "ALU",
+      "overview": "ALU provides higher education for a higher purpose. Students declare missions, not majors, and develop real-world skills to tackle pressing challenges. ALU believes in the power and agency of young people to shape the future."
+    },
+    "founder": {
+      "name": "Fred Swaniker",
+      "bio": "Fred Swaniker is a Ghanaian entrepreneur and leadership development expert. He founded ALU to address the need for ethical and entrepreneurial leaders in Africa. He also established the African Leadership Academy and ALX, aiming to develop 3 million leaders for Africa by 2035."
+    },
+    "mission": {
+      "statement": "To transform Africa by developing a generation of ethical and entrepreneurial leaders with a deep understanding of the continent's challenges and opportunities.",
+      "vision": "To create a network of 25 campuses across Africa, collectively educating over 250,000 leaders who will drive the continent's development."
+    },
+    "campuses": [
+      {
+        "location": "Pamplemousses, Mauritius",
+        "established": "September 2015",
+        "description": "Known as the African Leadership College, this inaugural campus offers a vibrant learning environment with modern facilities."
+      },
+      {
+        "location": "Kigali, Rwanda",
+        "established": "September 2017",
+        "description": "Situated in Kigali Innovation City, this campus emphasizes project-based learning and collaboration with local industries."
+      }
+    ],
+    "academic_programs": [
+      {
+        "degree": "BSc (Hons) in Entrepreneurial Leadership",
+        "description": "Focuses on developing leadership and entrepreneurial skills to address Africa's challenges.",
+        "accreditation": "Accredited by the Higher Education Council of Rwanda."
+      },
+      {
+        "degree": "BSc (Hons) in Software Engineering",
+        "description": "Equips students with technical skills and competencies required by employers.",
+        "accreditation": "Accredited by the Higher Education Council of Rwanda."
+      },
+      {
+        "degree": "BSc (Hons) in International Business and Trade",
+        "description": "Prepares students for careers in global commerce and trade.",
+        "accreditation": "Accredited by the Higher Education Council of Rwanda."
+      },
+      {
+        "degree": "Executive MBA",
+        "description": "Offered by the ALU School of Business, this program is designed for experienced professionals aiming to enhance their leadership skills.",
+        "accreditation": "Accredited by the Higher Education Council of Rwanda."
+      }
+    ],
+    "learning_model": {
+      "approach": "Student-driven and project-based learning",
+      "key_features": [
+        "Students declare missions aligned with Africa's challenges.",
+        "Emphasis on real-world problem-solving and leadership development.",
+        "Integration of internships and practical experiences into the curriculum."
+      ]
+    },
+    "student_life": {
+      "description": "ALU offers a vibrant campus life with diverse clubs, organizations, and activities that foster community, leadership, and personal growth.",
+      "health_insurance": {
+        "requirement": "All students must have medical insurance.",
+        "options": [
+          "Private health insurance meeting minimum coverage requirements.",
+          "ALU-facilitated insurance plans available for students."
+        ]
+      },
+      "clubs_and_societies": [
+        {
+          "name": "Entrepreneurship Club",
+          "description": "Provides a platform for students to develop and pitch business ideas."
+        },
+        {
+          "name": "Debate Society",
+          "description": "Enhances public speaking and critical thinking skills through regular debates."
+        },
+        {
+          "name": "Coding Bootcamp",
+          "description": "Offers workshops and projects for students interested in software development."
+        },
+        {
+          "name": "Community Service Initiatives",
+          "description": "Organizes volunteer opportunities to engage with and support local communities."
+        },
+        {
+          "name": "Cultural Festivals",
+          "description": "Celebrates the diverse cultures represented at ALU through events and performances."
+        }
+      ]
+    },
+    "alumni": {
+      "network": "Global community spanning various industries and sectors.",
+      "platform": "ALU Alumni Platform",
+      "notable_alumni": [
+        {
+          "name": "Jane Doe",
+          "achievement": "Founded a successful tech startup addressing education challenges in Africa."
+        },
+        {
+          "name": "John Smith",
+          "achievement": "Appointed as a policy advisor in a major African government."
+        }
+      ]
+    },
+    "partnerships": {
+      "academic": [
+        {
+          "partner": "Glasgow Caledonian University",
+          "role": "Founding academic and accreditation partner for the Mauritius campus."
+        }
+      ],
+      "corporate": [
+        {
+          "partner": "Elevate Africa",
+          "description": "Collaborated to develop a leadership curriculum for mid-career professionals."
+        },
+        {
+          "partner": "Various organizations",
+          "description": "Over 400 public and private organizations have provided internship opportunities to ALU students."
+        }
+      ]
+    },
+    "accreditation": {
+      "body": "Higher Education Council of Rwanda",
+      "status": "All degree programs are accredited."
+    },
+    "statistics": {
+      "student_body": {
+        "total_enrollment": 2000,
+        "international_students": "42%",
+        "countries_represented": 30
+      },
+      "internships": {
+        "total_completed": 4000,
+        "organizations_participated": 400
+      },
+      "financial_aid": {
+        "students_receiving_aid": "78%",
+        "types": [
+          "Merit-based scholarships",
+          "Need-based financial aid",
+          "Partner-funded scholarships"
+        ]
+      }
+    },
+    "admissions": {
+      "requirements": [
+        "Completed application form",
+        "Official high school transcripts",
+        "Personal statement",
+        "Two letters of recommendation",
+        "English proficiency test scores (TOEFL or IELTS) for non-native speakers"
+      ],
+      "deadlines": [
+        {
+          "round": "Early Decision",
+          "deadline": "November 15",
+          "notification": "December 20"
+        },
+        {
+          "round": "Regular Decision",
+          "deadline": "February 15",
+          "notification": "April 1"
+        },
+        {
+          "round": "Late Decision",
+          "deadline": "May 1",
+          "notification": "June 15"
+        }
+      ],
+      "application_fee": {
+        "amount": "$50 USD",
+        "waivers": "Available for students demonstrating financial need or from partner schools."
+      }
+    },
+    "campus_facilities": [
+      {
+        "campus": "Mauritius",
+        "facilities": [
+          "Modern classrooms",
+          "Student residences",
+          "Library and study spaces",
+          "Innovation lab",
+          "Cafeteria and recreation areas",
+          "Health and wellness center"
+        ]
+      },
+      {
+        "campus": "Rwanda",
+        "facilities": [
+          "State-of-the-art lecture halls",
+          "Student innovation center",
+          "Startup incubator spaces",
+          "Accommodation with WiFi and amenities",
+          "Fitness and sports area"
+        ]
+      }
+    ],
+    "faculty": {
+      "description": "ALU faculty members come from diverse global backgrounds, including industry experts, entrepreneurs, and academic researchers.",
+      "teaching_model": "Facilitators guide students in self-driven learning and project-based experiences.",
+      "notable_faculty": [
+        {
+          "name": "Dr. Rebecca Njeri",
+          "field": "Development Economics",
+          "contribution": "Leads research on economic transformation in Africa."
+        },
+        {
+          "name": "Dr. Michael Omondi",
+          "field": "Technology & AI",
+          "contribution": "Mentors students building scalable AI-driven startups."
+        }
+      ]
+    },
+    "technology_and_innovation": {
+      "platforms": [
+        "SmartCampus – for digital academic records and interactions",
+        "Remote Learning Tools – Zoom, Moodle, Google Classroom",
+        "AI-Driven Career Guidance – Pathway tools to guide mission progress"
+      ],
+      "innovation_spaces": [
+        "Startup Garage – Incubation center for ALU entrepreneurs",
+        "Tech Labs – Hands-on experimentation with software and hardware projects"
+      ]
+    },
+    "core_values": [
+      "Integrity",
+      "Leadership",
+      "Entrepreneurship",
+      "Continuous Learning",
+      "Pan-Africanism",
+      "Courage and Curiosity"
+    ],
+    "impact": {
+      "summary": "ALU alumni are contributing across sectors like education, energy, climate, tech, policy, and more.",
+      "examples": [
+        {
+          "project": "Solar for Schools",
+          "impact": "Provided sustainable energy to 100+ rural schools in East Africa."
+        },
+        {
+          "startup": "AgriChain",
+          "impact": "A supply chain platform improving farmer income by 25%."
+        }
+      ]
+    },
+    "faqs": [
+      {
+        "question": "What is ALU's teaching philosophy?",
+        "answer": "ALU uses a student-centered approach where learners declare missions aligned with real-world challenges and work on projects to solve them."
+      },
+      {
+        "question": "How do I apply to ALU?",
+        "answer": "You apply via the online portal at www.alueducation.com. Submit your application, essays, and relevant documents before the deadlines."
+      },
+      {
+        "question": "Where is ALU located?",
+        "answer": "ALU has campuses in Pamplemousses, Mauritius and Kigali, Rwanda."
+      },
+      {
+        "question": "Does ALU provide scholarships?",
+        "answer": "Yes, ALU offers merit- and need-based financial aid. Over 75% of students receive some form of financial assistance."
+      }
+    ],
+    "query_examples_for_retrieval": [
+      {
+        "question": "What is ALU?",
+        "answer": "ALU is the African Leadership University, a higher education institution focused on developing Africa’s future leaders through mission-driven learning."
+      },
+      {
+        "question": "Who is the founder of ALU?",
+        "answer": "Fred Swaniker, a Ghanaian entrepreneur and leadership advocate, founded ALU."
+      },
+      {
+        "question": "When was ALU established?",
+        "answer": "ALU was founded in 2015 with its first campus in Mauritius."
+      },
+      {
+        "question": "How does ALU teach differently?",
+        "answer": "Students declare missions instead of majors and engage in real-world problem solving and project-based learning."
+      },
+      {
+        "question": "Where is ALU's Rwanda campus?",
+        "answer": "It is located in Kigali Innovation City, Kigali, Rwanda."
+      },
+      {
+        "question": "Are ALU degrees accredited?",
+        "answer": "Yes, ALU's degrees are accredited by the Higher Education Council of Rwanda."
+      },
+      {
+        "question": "What can I study at ALU?",
+        "answer": "Programs include Entrepreneurial Leadership, Software Engineering, International Business and Trade, and Executive MBA."
+      },
+      {
+        "question": "What is ALU’s mission?",
+        "answer": "To educate ethical and entrepreneurial leaders who will transform Africa."
+      },
+      {
+        "question": "How many countries are represented at ALU?",
+        "answer": "Students from over 30 countries are represented at ALU."
+      },
+      {
+        "question": "What is the ALU student innovation center?",
+        "answer": "It’s a space for students to build prototypes, work on business ideas, and experiment with innovative technologies."
+      }
+    ]
+  }
+  
+ 
+   
+  

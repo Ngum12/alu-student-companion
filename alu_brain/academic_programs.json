@@ -1,0 +1,91 @@
+{
+  "category": "academic_programs",
+  "description": "Comprehensive information about ALU's academic programs, degrees, curriculum structure, and academic processes.",
+  "entries": [
+    {
+      "id": "prog_001",
+      "type": "short_response",
+      "question": "What degrees does ALU offer?",
+      "answer": "ALU offers a diverse range of undergraduate programs including Bachelor of Science degrees in Computer Science, Global Challenges, Business Management, International Business & Trade, and Arts & Humanities. These programs are designed to foster leadership, innovation, and global citizenship."
+    },
+    {
+      "id": "prog_002",
+      "type": "long_response",
+      "question": "How is ALU's curriculum structured?",
+      "answer": "ALU's curriculum is designed to develop innovative leaders through a blend of rigorous academic coursework and real-world experiences. It is divided into three main components: a foundational leadership core completed in the first year, major-specific courses that build in-depth disciplinary expertise, and culminating integrative capstone projects that emphasize practical problem solving and collaboration with industry partners. This structure ensures that graduates have both theoretical knowledge and practical skills."
+    },
+    {
+      "id": "prog_003",
+      "type": "link_response",
+      "question": "Where can I find detailed program information and the course catalog?",
+      "answer": "You can find detailed information in the following links:",
+      "links": [
+        {
+          "text": "ALU Course Catalog",
+          "url": "https://www.alueducation.com/programs/course-catalog"
+        },
+        {
+          "text": "Degree Requirements",
+          "url": "https://www.alueducation.com/programs/requirements"
+        }
+      ]
+    },
+    {
+      "id": "prog_004",
+      "type": "table_response",
+      "question": "What are the core courses required for all ALU students?",
+      "answer": "All ALU students complete a robust set of core courses that build essential leadership and foundational skills:",
+      "table": {
+        "headers": ["Course Code", "Course Title", "Credits", "Semester"],
+        "rows": [
+          ["LEAD101", "Foundations of Leadership", "3", "Semester 1"],
+          ["COMM101", "Effective Communication", "3", "Semester 1"],
+          ["CRIT101", "Critical Thinking & Problem Solving", "4", "Semester 2"],
+          ["INNO201", "Innovation & Creativity", "3", "Semester 2"],
+          ["ETHI201", "Ethics & Social Responsibility", "3", "Semester 3"]
+        ]
+      }
+    },
+    {
+      "id": "prog_005",
+      "type": "procedural_response",
+      "question": "How do I declare a major at ALU?",
+      "answer": "To declare your major at ALU, follow these steps:\n1. Successfully complete the first year foundation courses.\n2. Attend a Major Declaration Information Session hosted by the academic office.\n3. Meet with an academic advisor to discuss your interests and program options.\n4. Submit your major declaration form through the student portal.\n5. Await confirmation from the admissions office, then meet with your department advisor to plan your course schedule.",
+      "deadline": "Major declarations must be completed by the end of the first semester of the second year."
+    },
+    {
+      "id": "prog_006",
+      "type": "statistical_response",
+      "question": "How are students distributed across majors?",
+      "answer": "Current enrollment distribution across ALU's major programs:",
+      "statistics": [
+        {
+          "metric": "Computer Science",
+          "value": "32%"
+        },
+        {
+          "metric": "International Business & Trade",
+          "value": "10%"
+        },
+        {
+          "metric": "Arts & Humanities",
+          "value": "10%"
+        }
+      ],
+      "note": "These percentages are based on the most recent enrollment figures and are subject to annual updates."
+    },
+    {
+      "id": "prog_007",
+      "type": "long_response",
+      "question": "What are the outcomes for ALU graduates?",
+      "answer": "ALU graduates are known for their strong leadership skills, innovative mindset, and global perspective. They typically secure employment in technology, business, public policy, and international development. Many graduates proceed to leadership roles or launch successful startups. ALU's emphasis on practical, project-based learning ensures that its alumni are well-prepared for real-world challenges."
+    },
+    {
+      "id": "prog_008",
+      "type": "procedural_response",
+      "question": "How can prospective students apply to ALU's academic programs?",
+      "answer": "Prospective students can apply by following these steps:\n1. Complete the online application form on the ALU website.\n2. Submit required documents, including academic transcripts, a personal statement, and letters of recommendation.\n3. Participate in an admissions interview, which may be conducted in-person or virtually.\n4. Await the decision from the admissions committee.\n5. Upon acceptance, complete the enrollment process through the student portal.",
+      "deadline": "Applications are typically due three months prior to the start of the academic year."
+    }
+  ]
+}

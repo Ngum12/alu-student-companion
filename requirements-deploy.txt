@@ -1,0 +1,23 @@
+# Core dependencies
+fastapi==0.104.1
+uvicorn==0.23.2
+pydantic==2.4.2
+python-multipart==0.0.6
+python-dotenv>=1.0.0
+
+# Fixed compatible versions to resolve error
+sentence-transformers==2.2.2
+huggingface_hub==0.13.4  # This version has cached_download that sentence-transformers needs
+torch==2.0.0+cpu --extra-index-url https://download.pytorch.org/whl/cpu
+transformers==4.30.2  # Compatible version
+
+# Minimal document processing
+pypdf==3.17.1
+markdown==3.5.1
+
+# Vector DB (lightweight)
+chromadb==0.4.22
+
+# Basic HTTP handling
+requests>=2.28.2
+aiohttp>=3.8.4

@@ -1,0 +1,259 @@
+{
+  "category": "admissions",
+  "description": "Information about application process, requirements, deadlines, scholarships, and key personnel",
+  "entries": [
+    {
+      "id": "adm_001",
+      "type": "factual_response",
+      "question": "What are the admission requirements?",
+      "answer": "ALU admission requirements include: completed application form, high school transcripts, personal statement, and demonstration of leadership potential. SAT/ACT scores are optional but recommended.",
+      "conditions": "Requirements may vary slightly by program and applicant background."
+    },
+    {
+      "id": "adm_002",
+      "type": "date_response",
+      "question": "When are application deadlines?",
+      "answer": "ALU has three application rounds each year:",
+      "dates": [
+        {
+          "round": "Early Decision",
+          "deadline": "November 15",
+          "notification": "December 20"
+        },
+        {
+          "round": "Regular Decision",
+          "deadline": "February 15",
+          "notification": "April 1"
+        },
+        {
+          "round": "Late Decision",
+          "deadline": "May 1",
+          "notification": "June 15"
+        }
+      ]
+    },
+    {
+      "id": "adm_003",
+      "type": "long_response",
+      "question": "How does the ALU scholarship system work?",
+      "answer": "ALU is committed to making education accessible to talented students regardless of their financial background. The scholarship system at ALU works through a combination of merit-based and need-based financial aid.\n\nWhen students apply to ALU, they are automatically considered for merit scholarships based on their academic performance, leadership potential, and overall application strength. These scholarships can range from partial tuition coverage to full scholarships covering tuition, housing, and stipends.\n\nFor need-based financial aid, students must complete the financial aid application as part of their admission process. This requires submitting documentation about family income and financial circumstances. ALU then determines the level of financial support based on demonstrated need.\n\nALU also partners with various organizations, governments, and foundations to provide additional scholarship opportunities for specific demographics or countries. These partner scholarships often have their own application processes and criteria.\n\nAll scholarship recipients are expected to maintain good academic standing and contribute positively to the ALU community. Some scholarships may have specific requirements such as work-study components or service commitments after graduation."
+    },
+    {
+      "id": "adm_004",
+      "type": "procedural_response",
+      "question": "What is the application process for international students?",
+      "answer": "International students applying to ALU should follow these steps:\n1. Create an account on the ALU application portal\n2. Complete the online application form with personal and academic information\n3. Upload required documents (transcripts, passport copy, English proficiency test results)\n4. Submit a personal statement addressing the provided prompts\n5. Request recommendations from teachers or mentors through the portal\n6. Complete the video interview or attend a virtual assessment session\n7. Submit financial documentation for scholarship consideration\n8. Pay the application fee (or request a fee waiver if eligible)\n9. Check application status regularly for updates\n10. If admitted, complete enrollment confirmation steps",
+      "requirements": "International students must demonstrate English proficiency through TOEFL (minimum 80) or IELTS (minimum 6.5) scores unless they completed secondary education in English."
+    },
+    {
+      "id": "adm_005",
+      "type": "short_response",
+      "question": "Is there an application fee?",
+      "answer": "Yes, there is a $50 USD application fee. However, fee waivers are available for students demonstrating financial need or those from ALU partner schools and organizations."
+    },
+    {
+      "id": "adm_006",
+      "type": "statistical_response",
+      "question": "What is the admission rate?",
+      "answer": "ALU admission statistics from the most recent application cycle:",
+      "statistics": [
+        {
+          "metric": "Overall acceptance rate",
+          "value": "18%"
+        },
+        {
+          "metric": "Early decision acceptance rate",
+          "value": "24%"
+        },
+        {
+          "metric": "Regular decision acceptance rate",
+          "value": "16%"
+        },
+        {
+          "metric": "International student percentage",
+          "value": "42%"
+        },
+        {
+          "metric": "Students receiving financial aid",
+          "value": "78%"
+        }
+      ],
+      "note": "Acceptance rates vary by program and applicant pool each year"
+    },
+    {
+      "id": "adm_007",
+      "type": "team_response",
+      "question": "Who are the key people in the ALU Admissions Office?",
+      "answer": "The ALU Admissions team is led by experienced professionals dedicated to identifying and supporting future African leaders:",
+      "team_members": [
+        {
+          "name": "Dr. Mame Yauto Faye",
+          "title": "Director of Global Admissions",
+          "bio": "Dr. Faye has over 15 years of experience in higher education administration across three continents. She leads ALU's strategic admissions initiatives and oversees the entire admissions process. Dr. Faye holds a PhD in Educational Leadership from the University of Cape Town and is passionate about expanding access to quality education for African students."
+        },
+        {
+          "name": "Ibrahim Koné",
+          "title": "Associate Director of Undergraduate Admissions",
+          "bio": "Ibrahim leads the undergraduate admissions team and recruitment strategy. With a background in international education and a master's degree from Harvard University, he has implemented innovative approaches to identifying leadership potential in applicants. Ibrahim previously served as an education policy advisor in Côte d'Ivoire."
+        },
+        {
+          "name": "Aisha Mwangi",
+          "title": "Senior Admissions Officer",
+          "bio": "Aisha manages scholarship programs and financial aid processes. She holds a Master's in Public Administration and has worked extensively in educational nonprofits across East Africa. She conducts admissions workshops throughout the continent and coordinates ALU's scholarship selection committee."
+        },
+        {
+          "name": "Samuel Osei",
+          "title": "International Recruitment Manager",
+          "bio": "Samuel oversees ALU's international student recruitment initiatives across Africa and beyond. With extensive experience in cross-cultural education programs, he has helped increase ALU's international student diversity by 35% since joining the team three years ago."
+        },
+        {
+          "name": "Fatima Zongo",
+          "title": "Admissions Technology Specialist",
+          "bio": "Fatima manages ALU's application systems and data analytics for admissions. She has a background in computer science and provides critical insights for admissions strategy through data analysis and reporting."
+        }
+      ]
+    },
+    {
+      "id": "adm_008",
+      "type": "procedural_response",
+      "question": "What is the interview process like?",
+      "answer": "The ALU interview process consists of several key components:\n1. Initial application review by the admissions committee\n2. If selected, you'll receive an invitation for a video interview through the application portal\n3. The interview includes both pre-recorded questions and a live component with an admissions officer\n4. Questions focus on your leadership experiences, problem-solving abilities, and alignment with ALU values\n5. For selected programs, you may be asked to complete a case study or collaborative exercise\n6. Some candidates may be invited for a follow-up interview with faculty or alumni\n7. The final decision incorporates your interview performance along with your complete application\n\nTips for success include: research ALU thoroughly, prepare specific examples of leadership and problem-solving, be authentic, and have questions ready to ask the interviewer.",
+      "duration": "The typical interview lasts 30-45 minutes"
+    },
+    {
+      "id": "adm_009",
+      "type": "factual_response",
+      "question": "Does ALU accept transfer students?",
+      "answer": "Yes, ALU accepts transfer students who have completed coursework at accredited universities. Transfer applicants must submit official transcripts from all previous institutions, and credits are evaluated on a course-by-course basis. A maximum of 60 credits may be transferred toward an ALU degree. Transfer students must complete at least 50% of their degree requirements at ALU.",
+      "requirements": "Minimum 3.0 GPA (or equivalent) from previous institution required for transfer consideration"
+    },
+    {
+      "id": "adm_010",
+      "type": "short_response",
+      "question": "Is there a waitlist?",
+      "answer": "Yes, ALU maintains a waitlist for qualified applicants when space limitations prevent immediate offers of admission. Waitlisted applicants are typically notified of final decisions within 4-6 weeks after the regular notification date. ALU encourages waitlisted students to submit additional materials highlighting recent achievements or developments in their application."
+    },
+    {
+      "id": "adm_011",
+      "type": "procedural_response",
+      "question": "Can I defer my admission?",
+      "answer": "Admitted students may request to defer their enrollment for up to one academic year. The deferral process includes:\n1. Submit a formal deferral request form through the admissions portal\n2. Provide a written statement explaining the reason for deferral and how you plan to use the time\n3. Pay a non-refundable enrollment deposit to secure your spot\n4. Agree to not enroll in a degree program at another institution during the deferral period\n5. Submit periodic updates about your activities during the gap year\n\nDeferral requests are reviewed on a case-by-case basis and are not automatically granted.",
+      "deadline": "Deferral requests must be submitted within 14 days of admission offer"
+    },
+    {
+      "id": "adm_012",
+      "type": "factual_response",
+      "question": "What is conditional admission?",
+      "answer": "ALU offers conditional admission to promising applicants who meet most but not all admission requirements. Conditions typically include maintaining a minimum GPA in the first term, completing specified preparatory courses, demonstrating English proficiency improvement, or submitting pending documentation. Each conditional offer clearly outlines the specific requirements that must be fulfilled by the stated deadline.",
+      "note": "Students with conditional admission receive the same orientation and support services as regular admits"
+    },
+    {
+      "id": "adm_013",
+      "type": "long_response",
+      "question": "What makes a strong application to ALU?",
+      "answer": "A strong application to ALU demonstrates several key qualities:\n\n1. Leadership Potential: Evidence of initiative, responsibility, and impact in school, community, or personal projects. ALU values leadership beyond formal titles – show how you've made a difference.\n\n2. Academic Readiness: Strong academic performance relative to the opportunities available to you. We evaluate transcripts in context and value improvement over time.\n\n3. Innovation and Entrepreneurial Thinking: Demonstrated ability to identify problems and create solutions, regardless of scale. Examples of creative problem-solving are highly valued.\n\n4. Pan-African Passion: Understanding of and commitment to Africa's development challenges and opportunities. Articulate how you hope to contribute to the continent's transformation.\n\n5. Mission Alignment: Clear connection between your goals and ALU's mission to develop ethical, entrepreneurial leaders.\n\n6. Growth Mindset: Ability to reflect on failures, adapt to challenges, and pursue continuous improvement.\n\n7. Authentic Voice: Personal statements that genuinely reflect your unique perspective and journey, not what you think we want to hear.\n\nSuccessful applications tell a coherent story across all components – essays, recommendations, activities, and interviews should reinforce your distinct strengths and potential."
+    },
+    {
+      "id": "adm_014",
+      "type": "procedural_response",
+      "question": "How can I visit the campus?",
+      "answer": "ALU offers several options for campus visits:\n1. Open House Days: Scheduled throughout the year for prospective students and families\n2. Individual Campus Tours: Available Monday-Friday by appointment\n3. Virtual Campus Tours: Interactive online tours available for international visitors\n4. Shadow a Student: Spend a day with a current ALU student (requires advance arrangement)\n5. Admitted Students Weekend: Special programming for admitted students in April\n\nTo arrange a visit, complete the visit request form on the ALU website at least two weeks in advance. Virtual information sessions with admissions officers are also available monthly.",
+      "contact": "campus.visits@alueducation.com or +250 788 000 000"
+    },
+    {
+      "id": "adm_015",
+      "type": "factual_response",
+      "question": "Can admission decisions be appealed?",
+      "answer": "ALU has a formal appeals process for applicants who believe there was an error in the evaluation of their application or who have significant new information to present. Appeals must be submitted in writing within 14 days of the admission decision and should include specific grounds for reconsideration along with supporting documentation. Appeals are reviewed by a separate committee not involved in the initial decision.",
+      "note": "Appeals based solely on disagreement with the committee's evaluation are unlikely to result in a changed decision."
+    },
+    {
+      "id": "adm_016",
+      "type": "factual_response",
+      "question": "Does ALU require standardized tests?",
+      "answer": "ALU has adopted a test-optional policy for standardized assessments like SAT and ACT. While strong scores can strengthen an application, they are not required, and no student is disadvantaged for not submitting them. For international students, English proficiency tests (TOEFL/IELTS) are required unless the applicant completed secondary education in English.",
+      "recommendations": "If submitted, minimum recommended scores are: SAT 1200, ACT 25, TOEFL 80, IELTS 6.5"
+    },
+    {
+      "id": "adm_017",
+      "type": "long_response",
+      "question": "How does ALU support first-generation college students in the admissions process?",
+      "answer": "ALU is committed to supporting first-generation college students throughout the admissions process:\n\n1. First-Generation Access Program: Specialized guidance from admission counselors who work specifically with first-generation applicants.\n\n2. Application Fee Waivers: Automatically provided to all verified first-generation applicants.\n\n3. Dedicated Workshops: Virtual and in-person sessions focused on college application, financial aid, and scholarship processes specifically designed for students without family experience in higher education.\n\n4. Peer Mentorship: Connection with current ALU students who are also first-generation, providing insights and guidance from those with similar backgrounds.\n\n5. Parent/Guardian Resources: Materials and sessions in multiple languages to help families understand the college process, financial commitments, and the value of higher education.\n\n6. Extended Support: First-generation applicants receive additional time with counselors to ensure all questions are addressed and application components are strong.\n\n7. Contextual Review: Admission officers evaluate first-generation applications with particular attention to the applicant's educational context and available opportunities.\n\n8. Transition Program: Admitted first-generation students are invited to participate in a pre-orientation program focused on college success strategies.\n\nFirst-generation status is considered a positive factor in holistic review, as ALU values the unique perspectives and determination these students bring to our community."
+    },
+    {
+      "id": "adm_018",
+      "type": "procedural_response",
+      "question": "What happens after I'm admitted?",
+      "answer": "After receiving an offer of admission to ALU, you should take the following steps:\n1. Review your admission letter and financial aid offer carefully\n2. Submit your enrollment deposit to secure your place in the class\n3. Complete the New Student Registration form in the student portal\n4. Apply for housing through the Residence Life portal\n5. Register for mandatory pre-orientation activities\n6. Attend a virtual advising session to plan your first term courses\n7. Complete health forms and vaccination requirements\n8. Submit final official transcripts from your secondary school\n9. Apply for your student visa (international students)\n10. Register for orientation and arrival activities\n\nDetailed instructions and deadlines for each step will be provided in your admission packet and through the student portal.",
+      "deadline": "Most post-admission steps must be completed within 30 days of accepting your offer"
+    },
+    {
+      "id": "adm_019",
+      "type": "short_response",
+      "question": "What is the enrollment deposit?",
+      "answer": "Admitted students are required to pay a non-refundable enrollment deposit of $500 USD to secure their place in the incoming class. This deposit is later applied toward your first-term tuition. Need-based deposit waivers or reductions are available for students demonstrating significant financial hardship. The deposit deadline is typically May 1 for regular decision admits or within two weeks of admission for late decision candidates."
+    },
+    {
+      "id": "adm_020",
+      "type": "statistical_response",
+      "question": "What are the demographics of the current student body?",
+      "answer": "ALU's current student body represents diverse backgrounds from across Africa and beyond:",
+      "statistics": [
+        {
+          "metric": "Number of countries represented",
+          "value": "37"
+        },
+        {
+          "metric": "Female students",
+          "value": "52%"
+        },
+        {
+          "metric": "Male students",
+          "value": "48%"
+        },
+        {
+          "metric": "First-generation college students",
+          "value": "43%"
+        },
+        {
+          "metric": "Students from rural backgrounds",
+          "value": "35%"
+        },
+        {
+          "metric": "Students with previous entrepreneurial experience",
+          "value": "62%"
+        }
+      ],
+      "note": "ALU is committed to building a diverse community that represents the full range of backgrounds and perspectives across Africa"
+    },
+    {
+      "id": "adm_021",
+      "type": "upcoming_events",
+      "question": "Are there any upcoming admissions events or deadlines?",
+      "answer": "ALU hosts regular admissions events throughout the year:",
+      "events": [
+        {
+          "name": "Virtual Information Session",
+          "dates": ["First Tuesday of each month", "Third Saturday of each month"],
+          "description": "Live presentation about ALU programs and admissions process, with Q&A"
+        },
+        {
+          "name": "Application Workshops",
+          "dates": ["October 5-10", "January 15-20"],
+          "description": "Hands-on support for completing your ALU application"
+        },
+        {
+          "name": "Scholarship Information Sessions",
+          "dates": ["September 25", "December 10"],
+          "description": "Detailed overview of financial aid opportunities and application tips"
+        },
+        {
+          "name": "Admitted Students Day",
+          "dates": ["April 15"],
+          "description": "Special program for admitted students to experience ALU"
+        }
+      ],
+      "registration": "Register for all events through the ALU admissions portal or by emailing events@alueducation.com"
+    }
+  ]
+}

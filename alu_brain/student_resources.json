@@ -1,0 +1,72 @@
+
+{
+  "category": "student_resources",
+  "description": "Information about academic support, technology services, libraries, and student assistance programs",
+  "entries": [
+    {
+      "id": "res_001",
+      "type": "paragraph_response",
+      "question": "What academic support services are available?",
+      "answer": "ALU offers comprehensive academic support services through the Learning Commons. Services include one-on-one tutoring in various subjects, writing center assistance for papers and projects, study skills workshops, and academic coaching for students needing help with time management and organization. Peer learning assistants are available for most core courses, and faculty members hold regular office hours for individual support. The Learning Commons is located in the main library building and operates both by appointment and through drop-in hours. Additional support is available for students with documented learning differences through the Office of Accessible Education."
+    },
+    {
+      "id": "res_002",
+      "type": "link_response",
+      "question": "How do I access online library resources?",
+      "answer": "ALU provides extensive online library resources accessible through several platforms:",
+      "links": [
+        {
+          "text": "ALU Digital Library Portal",
+          "url": "https://library.alueducation.com"
+        },
+        {
+          "text": "JSTOR Academic Access",
+          "url": "https://www.jstor.org/access/alu"
+        },
+        {
+          "text": "African Digital Research Repository",
+          "url": "https://adrr.africa/alu"
+        }
+      ],
+      "note": "Access requires your ALU login credentials. Off-campus access uses VPN authentication."
+    },
+    {
+      "id": "res_003",
+      "type": "table_response",
+      "question": "What tech equipment can students borrow?",
+      "answer": "The ALU Tech Hub offers the following equipment loans to students:",
+      "table": {
+        "headers": ["Equipment", "Loan Period", "Late Fee/Day"],
+        "rows": [
+          ["Laptops", "Up to 7 days", "$5"],
+          ["DSLR Cameras", "Up to 3 days", "$10"],
+          ["Audio Recorders", "Up to 5 days", "$3"],
+          ["Presentation Clickers", "Up to 2 days", "$2"],
+          ["Portable Projectors", "Up to 2 days", "$10"],
+          ["VR Headsets", "Same day only", "$15"]
+        ]
+      },
+      "requirements": "Valid student ID and signed equipment agreement required for all loans"
+    },
+    {
+      "id": "res_004",
+      "type": "factual_response",
+      "question": "Do students get Microsoft Office for free?",
+      "answer": "Yes, all enrolled ALU students receive free access to Microsoft Office 365, including Word, Excel, PowerPoint, OneNote, and Teams. This subscription remains active throughout your enrollment period and includes 1TB of OneDrive cloud storage.",
+      "access": "Access is provided through your ALU email account credentials at office.com"
+    },
+    {
+      "id": "res_005",
+      "type": "procedural_response",
+      "question": "How do I register for disability accommodations?",
+      "answer": "To register for disability accommodations at ALU:\n1. Contact the Office of Accessible Education at access@alueducation.com\n2. Complete the Accommodation Request Form (available online)\n3. Submit supporting documentation from qualified professionals\n4. Schedule an intake appointment with an accessibility counselor\n5. Discuss and determine appropriate accommodations\n6. Receive an official Accommodation Letter\n7. Share the letter with your instructors each term as needed\n8. Follow up with the office if accommodations need adjustment",
+      "deadline": "Requests should be submitted at least 3 weeks before accommodations are needed"
+    },
+    {
+      "id": "res_006",
+      "type": "long_response",
+      "question": "What wellness resources are available to students?",
+      "answer": "ALU takes a holistic approach to student wellness, providing resources across multiple dimensions of wellbeing:\n\n**Physical Wellness**\n- Fully equipped fitness center with free access for students\n- Group fitness classes including yoga, HIIT, dance, and meditation\n- Intramural sports leagues and weekend recreation activities\n- Nutrition counseling with registered dietitians\n- Sleep hygiene workshops and resources\n\n**Mental Health Support**\n- Individual counseling sessions with licensed therapists (first 8 sessions free)\n- 24/7 crisis helpline accessible via phone, text, or chat\n- Peer support groups for various concerns (stress, grief, adjustment)\n- Mental health screening events each semester\n- Stress management and mindfulness workshops\n\n**Community Wellness**\n- Weekly community meals in residence halls\n- Cultural celebration events throughout the academic year\n- Service learning opportunities in local communities\n- Faith-based groups and spiritual resources\n- Belonging and inclusion initiatives\n\n**Financial Wellness**\n- Financial literacy workshops\n- One-on-one financial coaching\n- Emergency financial assistance fund\n- Student employment opportunities\n- Scholarship and funding guidance\n\nThe ALU Wellness Center coordinates these resources and operates on a drop-in basis Monday through Friday, 9am-5pm, with extended virtual hours on evenings and weekends. All services are confidential and most are included in student fees with no additional cost."
+    }
+  ]
+}
