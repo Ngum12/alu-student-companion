@@ -1,6 +1,10 @@
 # Pin NumPy to 1.x for compatibility
 numpy==1.24.3
 
+# Pin huggingface_hub to a compatible version
+huggingface_hub==0.16.4
+sentence-transformers==2.2.2
+
 # Core dependencies
 fastapi==0.104.1
 uvicorn==0.23.2
@@ -9,7 +13,6 @@ python-multipart==0.0.6
 
 # Vector database and embeddings - CRITICAL for search
 chromadb==0.4.22
-sentence-transformers==2.2.2
 torch==2.0.0 --extra-index-url https://download.pytorch.org/whl/cpu
 
 # Document processing - needed for document handling
