@@ -19,12 +19,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger("alu-chatbot")
 
-# Enable lightweight mode for Hugging Face
-from utils.lightweight_mode import enable_lightweight_mode
-
-if os.environ.get("DEPLOYMENT_ENV") == "huggingface":
-    config = enable_lightweight_mode()
-    logger.info(f"Running in {config['mode']} mode on {config['device']}")
+# Remove Hugging Face specific code
+# Instead, directly use lightweight settings for all deployments
+torch.set_grad_enabled(False)  # Disable gradient computation
+device = "cpu"  # Force CPU usage
 
 # Set environment variables to reduce memory usage
 os.environ["OMP_NUM_THREADS"] = "1"
@@ -438,5 +436,6 @@ def shutdown_event():
 
 # Run the server
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))  # Change default to 10000
-    uvicorn.run(app, host="0.0.0.0", port=port)  # Remove reload and use app directly
+    port = int(os.environ.get("PORT", 8000))  # Use Render's provided PORT
+    logger.info(f"Starting server on port {port}")
+    uvicorn.run(app, host="0.0.0.0", port=port)
