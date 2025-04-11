@@ -11,6 +11,13 @@ import gc
 import torch
 import time
 import sys
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger("alu-chatbot")
 
 # Add parent directory to path to import utils
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -19,12 +26,13 @@ from utils.lightweight_mode import enable_lightweight_mode # type: ignore
 # Enable lightweight mode for Hugging Face
 if os.environ.get("DEPLOYMENT_ENV") == "huggingface":
     config = enable_lightweight_mode()
-    print(f"Running in {config['mode']} mode on {config['device']}")
+    logger.info(f"Running in {config['mode']} mode on {config['device']}")
 
 # Set environment variables to reduce memory usage
 os.environ["OMP_NUM_THREADS"] = "1"
 os.environ["MKL_NUM_THREADS"] = "1"
 os.environ["TRANSFORMERS_CACHE"] = "/tmp/transformers_cache"
+os.environ["TRANSFORMERS_CACHE_MAX_SIZE"] = "2G"  # 2GB max cache
 
 # Force CPU usage and single thread
 if torch.cuda.is_available():
@@ -64,30 +72,30 @@ try:
     # Initialize components one by one with explicit error handling
     try:
         document_processor = DocumentProcessor()
-        print("✅ DocumentProcessor initialized")
+        logger.info("✅ DocumentProcessor initialized")
     except Exception as e:
-        print(f"⚠️ DocumentProcessor init failed: {e}")
+        logger.warning(f"⚠️ DocumentProcessor init failed: {e}")
         document_processor = None
         
     try:
         retrieval_engine = ExtendedRetrievalEngine()
-        print("✅ ExtendedRetrievalEngine initialized")
+        logger.info("✅ ExtendedRetrievalEngine initialized")
     except Exception as e:
-        print(f"⚠️ ExtendedRetrievalEngine init failed: {e}")
+        logger.warning(f"⚠️ ExtendedRetrievalEngine init failed: {e}")
         retrieval_engine = None
         
     try:
         prompt_engine = PromptEngine()
-        print("✅ PromptEngine initialized")
+        logger.info("✅ PromptEngine initialized")
     except Exception as e:
-        print(f"⚠️ PromptEngine init failed: {e}")
+        logger.warning(f"⚠️ PromptEngine init failed: {e}")
         prompt_engine = None
         
     try:
         nyptho = NypthoIntegration()
-        print("✅ NypthoIntegration initialized")
+        logger.info("✅ NypthoIntegration initialized")
     except Exception as e:
-        print(f"⚠️ NypthoIntegration init failed: {e}")
+        logger.warning(f"⚠️ NypthoIntegration init failed: {e}")
         nyptho = None
         
     # Create data directory if it doesn't exist
@@ -96,13 +104,13 @@ try:
     try:
         conversation_memory = ConversationMemory(persistence_path="./data/conversations.json")
         conversation_memory.load_from_disk()
-        print("✅ ConversationMemory initialized and loaded")
+        logger.info("✅ ConversationMemory initialized and loaded")
     except Exception as e:
-        print(f"⚠️ ConversationMemory init failed: {e}")
+        logger.warning(f"⚠️ ConversationMemory init failed: {e}")
         conversation_memory = None
         
 except Exception as e:
-    print(f"⚠️ CRITICAL INIT ERROR: {e}")
+    logger.error(f"⚠️ CRITICAL INIT ERROR: {e}")
     # Don't exit - provide minimal functionality instead
 
 # Define request models
@@ -150,6 +158,7 @@ async def health():
             }
         }
     except Exception as e:
+        logger.error(f"Error in health check: {e}")
         return {
             "status": "degraded",
             "error": str(e),
@@ -162,8 +171,8 @@ async def process_chat(request: ChatRequest):
     user_id = request.options.get("user_id", "anonymous") if request.options else "anonymous"
     conversation_id = request.options.get("conversation_id") if request.options else None
     
-    print(f"Processing message: '{user_message}'")
-    print(f"Is school related: {is_school_related(user_message)}")
+    logger.info(f"Processing message: '{user_message}'")
+    logger.info(f"Is school related: {is_school_related(user_message)}")
     
     try:
         # Add user message to conversation memory
@@ -176,7 +185,7 @@ async def process_chat(request: ChatRequest):
         # First, check if this is a specialized query that should use enhanced capabilities
         if not is_school_related(user_message):
             try:
-                print(f"Trying enhanced capabilities for: '{user_message}'")
+                logger.info(f"Trying enhanced capabilities for: '{user_message}'")
                 
                 # Use the enhanced capabilities router
                 result = handle_question(
@@ -185,7 +194,7 @@ async def process_chat(request: ChatRequest):
                     conversation_history=conversation_history
                 )
                 
-                print(f"Selected capability: {result['source']}")
+                logger.info(f"Selected capability: {result['source']}")
                 
                 # Format the response based on which capability handled it
                 if result["source"] == "math_solver":
@@ -224,7 +233,7 @@ async def process_chat(request: ChatRequest):
                     "conversation_id": conversation.id
                 }
             except Exception as e:
-                print(f"Enhanced capabilities error: {e}")
+                logger.error(f"Enhanced capabilities error: {e}")
                 # Continue to existing document retrieval code
         
         # Get relevant context from the retrieval engine
@@ -265,7 +274,7 @@ async def process_chat(request: ChatRequest):
         }
         
     except Exception as e:
-        print(f"Error processing chat: {e}")
+        logger.error(f"Error processing chat: {e}")
         cleanup_memory()
         return {"response": "I'm sorry, I couldn't process your request due to a technical error."}
 
@@ -325,7 +334,7 @@ async def generate_response(request: QueryRequest):
             "engine": model_id
         }
     except Exception as e:
-        print(f"Error generating response: {e}")
+        logger.error(f"Error generating response: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/upload-document")
@@ -349,7 +358,7 @@ async def upload_document(
         
         return {"status": "success", "message": "Document uploaded successfully", "doc_id": doc_id}
     except Exception as e:
-        print(f"Error uploading document: {e}")
+        logger.error(f"Error uploading document: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/documents")
@@ -359,7 +368,7 @@ async def list_documents():
         documents = document_processor.list_documents()
         return {"documents": documents}
     except Exception as e:
-        print(f"Error listing documents: {e}")
+        logger.error(f"Error listing documents: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.delete("/documents/{doc_id}")
@@ -374,7 +383,7 @@ async def delete_document(doc_id: str):
         else:
             raise HTTPException(status_code=404, detail="Document not found")
     except Exception as e:
-        print(f"Error deleting document: {e}")
+        logger.error(f"Error deleting document: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/rebuild-index")
@@ -384,7 +393,7 @@ async def rebuild_index(background_tasks: BackgroundTasks):
         background_tasks.add_task(retrieval_engine.rebuild_index)
         return {"status": "success", "message": "Index rebuild started in the background"}
     except Exception as e:
-        print(f"Error starting index rebuild: {e}")
+        logger.error(f"Error starting index rebuild: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # Nyptho-specific endpoints
@@ -395,7 +404,7 @@ async def get_nyptho_status():
         status = nyptho.get_status()
         return status
     except Exception as e:
-        print(f"Error getting Nyptho status: {e}")
+        logger.error(f"Error getting Nyptho status: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/nyptho/personality")
@@ -410,7 +419,7 @@ async def set_nyptho_personality(settings: PersonalitySettings):
         })
         return result
     except Exception as e:
-        print(f"Error updating personality: {e}")
+        logger.error(f"Error updating personality: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/search-stats")
@@ -420,15 +429,15 @@ async def get_search_stats():
         search_stats = retrieval_engine.alu_brain.search_engine.get_search_stats()
         return search_stats
     except Exception as e:
-        print(f"Error getting search stats: {e}")
+        logger.error(f"Error getting search stats: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.on_event("shutdown")
 def shutdown_event():
     """Handler for application shutdown"""
-    print("Saving conversation memory...")
+    logger.info("Saving conversation memory...")
     conversation_memory.save_to_disk()
-    print("Shutting down Nyptho...")
+    logger.info("Shutting down Nyptho...")
     try:
         nyptho.shutdown()
     except:
