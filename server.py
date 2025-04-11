@@ -11,26 +11,47 @@ print("=== RENDER STARTUP: Server initialization ===")
 print(f"=== RENDER STARTUP: PORT={os.environ.get('PORT')} ===")
 print(f"=== RENDER STARTUP: Python version: {sys.version} ===")
 
-# Import the FastAPI app from main.py
+# First import the minimal app (this will start fast)
 try:
-    from main import app
+    from minimal_app import app
+    print("✅ Minimal app loaded successfully, starting server...")
     
-    # This only runs when executed directly
-    if __name__ == "__main__":
-        import uvicorn
-        port = int(os.environ.get("PORT", 10000))
-        print(f"⚡ Starting server on port {port} ⚡")
-        print(f"⚡ Using Python {sys.version} ⚡")
-        print(f"⚡ Memory available: {os.environ.get('RENDER_MEMORY_TOTAL', 'unknown')} ⚡")
-        
-        # Add simple route handlers to overwrite any problematic ones
-        @app.get("/api/minimal-chat")
-        async def minimal_chat():
-            return {"response": "This is a minimal chat response that doesn't use ML components"}
-        
-        uvicorn.run(app, host="0.0.0.0", port=port)
+    # Then try to import the full app in a background thread
+    import threading
+    
+    def load_full_app():
+        try:
+            print("🔄 Starting to load full app components...")
+            import time
+            start_time = time.time()
+            
+            # Import the full app (this will replace minimal routes when ready)
+            from main import app as full_app
+            
+            # Copy all routes from full app to our minimal app
+            for route in full_app.routes:
+                # Skip if route path already exists
+                if not any(r.path == route.path for r in app.routes):
+                    app.routes.append(route)
+            
+            elapsed = time.time() - start_time
+            print(f"✅ Full app loaded successfully in {elapsed:.2f} seconds")
+        except Exception as e:
+            print(f"⚠️ Error loading full app: {e}")
+    
+    # Start loading full app in background
+    bg_thread = threading.Thread(target=load_full_app)
+    bg_thread.daemon = True
+    bg_thread.start()
+    
 except Exception as e:
-    print(f"CRITICAL ERROR DURING IMPORT: {e}")
-    import traceback
-    print(traceback.format_exc())
+    print(f"⚠️ CRITICAL ERROR: {e}")
     sys.exit(1)
+
+# This only runs when executed directly
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 10000))
+    print(f"⚡ Starting server on port {port} ⚡")
+    
+    uvicorn.run(app, host="0.0.0.0", port=port)
