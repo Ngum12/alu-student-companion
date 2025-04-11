@@ -1,4 +1,7 @@
+print("=== STARTUP: Beginning application initialization ===")
 import os
+print(f"=== STARTUP: PORT environment variable: {os.environ.get('PORT')} ===")
+
 import json
 import random
 import uvicorn
@@ -433,9 +436,3 @@ def shutdown_event():
         nyptho.shutdown()
     except:
         pass  # Ignore errors during shutdown
-
-# Run the server
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))  # Use Render's provided PORT
-    logger.info(f"Starting server on port {port}")
-    uvicorn.run(app, host="0.0.0.0", port=port)
