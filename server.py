@@ -1,5 +1,14 @@
 import os
 import sys
+
+# Explicitly disable CUDA before any other imports
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
+# Print diagnostic information
+print("=== RENDER STARTUP: Server initialization ===")
+print(f"=== RENDER STARTUP: PORT={os.environ.get('PORT')} ===")
+print(f"=== RENDER STARTUP: Python version: {sys.version} ===")
+
 import logging
 import threading
 from fastapi import FastAPI, Request

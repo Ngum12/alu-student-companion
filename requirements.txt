@@ -14,7 +14,7 @@ markdown==3.5.1  # Add this line for response formatting
 
 # Vector database and embeddings - CRITICAL for search
 chromadb==0.4.22
-torch==2.0.0 --extra-index-url https://download.pytorch.org/whl/cpu
+https://download.pytorch.org/whl/cpu/torch-2.0.0%2Bcpu-cp311-cp311-linux_x86_64.whl
 
 # Document processing - needed for document handling
 pypdf==3.17.1
