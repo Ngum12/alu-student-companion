@@ -3,14 +3,18 @@ services:
     name: alu-chatbot-backend
     runtime: python
     plan: free
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+      pip install -r requirements.txt
+      python download_models.py
     startCommand: python server.py
     envVars:
+      - key: TRANSFORMERS_CACHE
+        value: ./model_cache
+      - key: SENTENCE_TRANSFORMERS_HOME
+        value: ./model_cache
+      - key: HF_HOME
+        value: ./model_cache
       - key: PYTHONUNBUFFERED
-        value: 1
+        value: "1"
       - key: CORS_ALLOWED_ORIGINS
-        value: "https://alu-student-companion.onrender.com,https://alu-companion.onrender.com,http://localhost:3000,http://localhost:3001"
-      - key: MKL_NUM_THREADS
-        value: 1
-      - key: OMP_NUM_THREADS
-        value: 1
+        value: "https://alu-student-companion.onrender.com,http://localhost:3000,http://localhost:3001"

@@ -1,8 +1,8 @@
-
 from retrieval_engine import RetrievalEngine, Document
 from alu_brain import ALUBrainManager
 from typing import List, Dict, Any, Optional
 import time
+import os
 
 class ExtendedRetrievalEngine(RetrievalEngine):
     """
@@ -11,11 +11,29 @@ class ExtendedRetrievalEngine(RetrievalEngine):
     """
     
     def __init__(self):
-        super().__init__()
-        self.alu_brain = ALUBrainManager()
-        self._cache = {}  # Simple in-memory cache
-        self._cache_ttl = 300  # Cache TTL in seconds (5 minutes)
-        print("Extended Retrieval Engine initialized with ALU Brain integration and performance optimizations")
+        try:
+            super().__init__()
+            self.alu_brain = ALUBrainManager()
+            self._cache = {}  # Simple in-memory cache
+            self._cache_ttl = 300  # Cache TTL in seconds (5 minutes)
+            print("Extended Retrieval Engine initialized with ALU Brain integration and performance optimizations")
+        except Exception as e:
+            print(f"⚠️ Error initializing retrieval engine: {e}")
+            print("Attempting to load model from cache...")
+            try:
+                # Try again with forced offline mode
+                os.environ["HF_DATASETS_OFFLINE"] = "1"
+                os.environ["TRANSFORMERS_OFFLINE"] = "1"
+                
+                # Initialize again with local-only model
+                super().__init__()
+                self.alu_brain = ALUBrainManager()
+                self._cache = {}  # Simple in-memory cache
+                self._cache_ttl = 300  # Cache TTL in seconds (5 minutes)
+                print("Extended Retrieval Engine initialized in offline mode")
+            except Exception as retry_e:
+                print(f"⚠️ Fallback initialization also failed: {retry_e}")
+                raise
     
     def retrieve_context(self, query: str, role: str = "student", **kwargs):
         """
