@@ -1,26 +1,27 @@
 import os
-print("Pre-downloading models for offline use...")
+import sys
+
+print("Pre-downloading models for Hugging Face deployment...")
 
 # Set cache directory
-os.environ["TRANSFORMERS_CACHE"] = "./model_cache"
-os.environ["SENTENCE_TRANSFORMERS_HOME"] = "./model_cache"
-os.environ["HF_HOME"] = "./model_cache"
+os.environ["TRANSFORMERS_CACHE"] = "/tmp/model_cache"
+os.environ["SENTENCE_TRANSFORMERS_HOME"] = "/tmp/model_cache"
+os.environ["HF_HOME"] = "/tmp/model_cache"
 
 # Create cache directory
-os.makedirs("./model_cache", exist_ok=True)
+os.makedirs("/tmp/model_cache", exist_ok=True)
 
-# Pre-download models with extended timeout
-from sentence_transformers import SentenceTransformer
-import requests.adapters
-import urllib3
+# Configure extended timeouts
+import urllib.request
+import socket
+socket.setdefaulttimeout(300)  # 5-minute timeout
 
-# Extend timeout for downloads
-urllib3.util.timeout.Timeout._DEFAULT_TIMEOUT = 120
-adapter = requests.adapters.HTTPAdapter(max_retries=5)
-session = requests.Session()
-session.mount('https://', adapter)
-
-# Download the model
-print("Downloading sentence transformer model...")
-model = SentenceTransformer('all-MiniLM-L6-v2', cache_folder='./model_cache')
-print("✅ Model download complete!")
+try:
+    # Pre-download the model
+    from sentence_transformers import SentenceTransformer
+    print("Downloading sentence transformer model...")
+    model = SentenceTransformer('all-MiniLM-L6-v2', cache_folder='/tmp/model_cache')
+    print("✅ Model downloaded successfully!")
+except Exception as e:
+    print(f"⚠️ Error downloading model: {e}")
+    sys.exit(1)

@@ -122,7 +122,8 @@ def execute_with_timeout(func, timeout_seconds=30, *args, **kwargs):
 app = FastAPI(title="ALU Chatbot Backend")
 
 # Get CORS settings from environment or use default
-allowed_origins = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:3001,https://alu-student-companion.onrender.com").split(",")
+allowed_origins = os.getenv("CORS_ALLOWED_ORIGINS", 
+    "http://localhost:3000,https://alu-student-companion.onrender.com,https://huggingface.co").split(",")
 
 app.add_middleware(
     CORSMiddleware,
