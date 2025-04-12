@@ -2,22 +2,43 @@ print("=== STARTUP: Beginning application initialization ===")
 import os
 print(f"=== STARTUP: PORT environment variable: {os.environ.get('PORT')} ===")
 
-import json
+# Import standard libraries first
+import sys
+import torch
+import threading
+import platform
+import logging
+import psutil
 import random
-import uvicorn
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Body, Request, BackgroundTasks
-from fastapi.middleware.cors import CORSMiddleware
+import time
+import json
+from typing import Dict, Any, List, Optional
 from pydantic import BaseModel
-from typing import List, Optional, Dict, Any
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+
+# Create FastAPI app before any other imports
+app = FastAPI(title="ALU Chatbot Backend")
+
+# Set up CORS
+allowed_origins = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:3001,https://alu-student-companion.onrender.com").split(",")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=allowed_origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Rest of your imports...
+import uvicorn
+from fastapi import UploadFile, File, Form, HTTPException, Body, BackgroundTasks
 from datetime import datetime
 import gc
-import torch
-import time
-import sys
-import logging
-import platform
 import signal
-import threading
+from PIL import Image
+import io
+from transformers import CLIPProcessor, CLIPModel
 
 # Cross-platform imports and utilities
 if platform.system() != "Windows":
@@ -91,6 +112,10 @@ from prompt_engine import PromptEngine
 from prompt_engine.nyptho_integration import NypthoIntegration
 from enhanced_capabilities.capability_router import handle_question, is_school_related
 from enhanced_capabilities.conversation_memory import ConversationMemory
+# Comment these until the modules are created
+from enhanced_capabilities.reasoning_chain import ReasoningChain
+from data_integration.alu_api_connector import ALUDataConnector
+from analytics.conversation_analytics import ConversationAnalytics
 
 # Timeout execution utility
 def execute_with_timeout(func, timeout_seconds=30, *args, **kwargs):
@@ -117,21 +142,6 @@ def execute_with_timeout(func, timeout_seconds=30, *args, **kwargs):
     if exception[0]:
         return None, exception[0]
     return result[0], None
-
-# Create FastAPI app
-app = FastAPI(title="ALU Chatbot Backend")
-
-# Get CORS settings from environment or use default
-allowed_origins = os.getenv("CORS_ALLOWED_ORIGINS", 
-    "http://localhost:3000,https://alu-student-companion.onrender.com,https://huggingface.co").split(",")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=allowed_origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # Replace the existing component initialization code with this
 try:
@@ -174,6 +184,23 @@ try:
     except Exception as e:
         print(f"⚠️ ConversationMemory init failed: {e}")
         conversation_memory = None
+
+    # Initialize advanced capabilities with fallbacks
+    try:
+        reasoning_chain = ReasoningChain(retrieval_engine, prompt_engine)
+        alu_connector = ALUDataConnector()
+        print("✅ Advanced capabilities initialized")
+    except Exception as e:
+        print(f"⚠️ Error initializing advanced capabilities: {e}")
+        # Define fallbacks so the code doesn't break if initialization fails
+        reasoning_chain = None
+        alu_connector = None
+
+    try:
+        analytics = ConversationAnalytics(conversation_memory)
+        print("✅ Advanced capabilities initialized")
+    except Exception as e:
+        print(f"⚠️ Error initializing advanced capabilities: {e}")
         
 except Exception as e:
     print(f"⚠️ CRITICAL INIT ERROR: {e}")
@@ -232,8 +259,6 @@ async def health():
 @app.get("/debug")
 async def debug_info():
     """Debug endpoint with detailed system info"""
-    import sys
-    import psutil
     process = psutil.Process()
     
     return {
@@ -389,3 +414,101 @@ async def process_chat(request: ChatRequest):
             "response": "I'm sorry, I encountered an unexpected error.",
             "error_type": "general_error"
         }
+
+@app.post("/api/image-query")
+async def process_image_query(
+    image: UploadFile = File(...),
+    question: str = Form(...)
+):
+    """Process queries about uploaded images (documents, schedules, etc.)"""
+    try:
+        # Read image
+        contents = await image.read()
+        img = Image.open(io.BytesIO(contents))
+        
+        # Load CLIP model
+        model_name = "openai/clip-vit-base-patch32"
+        processor = CLIPProcessor.from_pretrained(model_name)
+        model = CLIPModel.from_pretrained(model_name)
+        
+        # Process image and question
+        inputs = processor(
+            text=[question], 
+            images=img, 
+            return_tensors="pt", 
+            padding=True
+        )
+        outputs = model(**inputs)
+        
+        # Calculate similarity between image and text
+        image_features = outputs.image_embeds
+        text_features = outputs.text_embeds
+        similarity = torch.nn.functional.cosine_similarity(image_features, text_features)
+        
+        # Generate response based on image content
+        context_docs = retrieval_engine.retrieve_context(question)
+        response = prompt_engine.generate_response(
+            query=f"Image question: {question}",
+            context=context_docs,
+            additional_context={
+                "image_text_similarity": float(similarity[0]),
+                "confidence": "high" if similarity[0] > 0.25 else "low"
+            }
+        )
+        
+        return {"response": response}
+    except Exception as e:
+        print(f"Error processing image query: {e}")
+        return {"response": "I'm sorry, I couldn't process the image. Please try a different image or question."}
+
+@app.post("/api/deep-query")
+async def process_deep_query(request: ChatRequest):
+    """Process complex queries using multi-step reasoning"""
+    try:
+        if reasoning_chain is None:
+            return {
+                "response": "I'm sorry, the advanced reasoning feature is currently unavailable.",
+                "error": "capability_unavailable"
+            }
+            
+        result = reasoning_chain.solve(request.message)
+        return {
+            "response": result["answer"],
+            "reasoning_steps": result["reasoning_chain"],
+            "steps_taken": result["steps_taken"]
+        }
+    except Exception as e:
+        print(f"Error in deep query: {e}")
+        return {
+            "response": "I'm sorry, I encountered an error when processing this complex question.",
+            "error": str(e)
+        }
+
+@app.get("/api/alu-events")
+async def get_alu_events(campus: str = "all", days: int = 7):
+    """Get upcoming events at ALU"""
+    try:
+        if alu_connector is None:
+            return {
+                "events": [],
+                "error": "Data connector unavailable"
+            }
+            
+        events = alu_connector.get_upcoming_events(campus, days)
+        return {"events": events}
+    except Exception as e:
+        print(f"Error fetching ALU events: {e}")
+        return {"events": [], "error": str(e)}
+
+@app.get("/api/analytics/dashboard")
+async def get_analytics_dashboard():
+    """Get analytics dashboard data"""
+    try:
+        if conversation_memory is None or analytics is None:
+            return {"error": "Analytics service not available"}
+            
+        dashboard_data = analytics.generate_dashboard_data()
+        return dashboard_data
+    except Exception as e:
+        print(f"Error generating analytics dashboard: {e}")
+        return {"error": f"Could not generate analytics: {str(e)}"}

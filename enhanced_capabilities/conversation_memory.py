@@ -224,3 +224,39 @@ class ConversationMemory:
             summary = all_text
             
         return f"Conversation about: {summary}"
+
+    def analyze_user_preferences(self, user_id):
+        """Analyze conversation history to learn user preferences"""
+        conversations = self.get_user_conversations(user_id)
+        
+        # Extract patterns from conversations
+        topics_of_interest = {}
+        response_length_preference = 0
+        technical_detail_level = 0
+        
+        for conv in conversations:
+            for msg in conv.messages:
+                if msg.role == "user":
+                    # Analyze question complexity, topics, etc.
+                    # This is a simplified example
+                    words = msg.content.split()
+                    for word in words:
+                        if word in topics_of_interest:
+                            topics_of_interest[word] += 1
+                        else:
+                            topics_of_interest[word] = 1
+                
+                if msg.role == "assistant":
+                    # Analyze what kinds of responses the user engages with
+                    response_length_preference += len(msg.content)
+        
+        # Calculate averages
+        if len(conversations) > 0:
+            response_length_preference /= len(conversations)
+        
+        return {
+            "topics_of_interest": dict(sorted(topics_of_interest.items(), 
+                                             key=lambda x: x[1], reverse=True)[:5]),
+            "preferred_response_length": response_length_preference,
+            "technical_detail_level": technical_detail_level
+        }

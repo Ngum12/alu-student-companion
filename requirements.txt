@@ -1,30 +1,26 @@
-# Pin NumPy to 1.x for compatibility
-numpy==1.24.3
-
-# Pin huggingface_hub to a compatible version
-huggingface_hub==0.16.4
-sentence-transformers==2.2.2
-
 # Core dependencies
 fastapi==0.104.1
 uvicorn==0.23.2
 pydantic==2.4.2
 python-multipart==0.0.6
-markdown==3.5.1  # Add this line for response formatting
+markdown==3.5.1
 
-# Vector database and embeddings - CRITICAL for search
+# Vector database and embeddings
 chromadb==0.4.22
 torch==2.0.0 --extra-index-url https://download.pytorch.org/whl/cpu
+sentence-transformers==2.2.2
+huggingface_hub==0.16.4
 
-# Document processing - needed for document handling
+# Document processing
 pypdf==3.17.1
 docx2txt==0.8
 
 # Essential utilities
 requests>=2.28.2
 aiohttp>=3.8.4
+psutil==5.9.5
 
-# Enhanced capabilities - needed for special queries
+# Enhanced capabilities
 sympy>=1.11.1  # Math solving
 duckduckgo-search>=7.5.0  # Web search
 nltk>=3.8.1  # NLP capabilities
