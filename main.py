@@ -19,6 +19,17 @@ import platform
 import signal
 import threading
 
+# Function to determine if a message is school-related
+def is_school_related(message):
+    """Check if a message is related to school/academic topics"""
+    school_keywords = [
+        "class", "course", "assignment", "homework", "exam", "study", 
+        "professor", "lecture", "student", "academic", "university", 
+        "college", "ALU", "alu", "deadline", "syllabus", "curriculum"
+    ]
+    message_lower = message.lower()
+    return any(keyword in message_lower for keyword in school_keywords)
+
 # Cross-platform imports and utilities
 if platform.system() != "Windows":
     # Linux-specific imports
@@ -84,39 +95,92 @@ logging.basicConfig(
 )
 logger = logging.getLogger("alu-chatbot")
 
-# Import the modules
-from document_processor import DocumentProcessor
-from retrieval_engine_extended import ExtendedRetrievalEngine
-from prompt_engine import PromptEngine
-from prompt_engine.nyptho_integration import NypthoIntegration
-from enhanced_capabilities.capability_router import handle_question, is_school_related
-from enhanced_capabilities.conversation_memory import ConversationMemory
+# Pre-define components so we can set them one by one
+document_processor = None
+retrieval_engine = None
+prompt_engine = None
+nyptho = None
+conversation_memory = None
 
-# Timeout execution utility
-def execute_with_timeout(func, timeout_seconds=30, *args, **kwargs):
+# Function to handle different types of questions with appropriate capabilities
+def handle_question(question, retrieval_func):
     """
-    Run a function with a timeout, works on both Windows and Linux
-    Returns tuple (result, error)
+    Route questions to appropriate handlers based on content
+    Args:
+        question: The user's question
+        retrieval_func: Function to retrieve context if needed
+    
+    Returns:
+        Dict with answer, source, and additional_info
     """
-    result = [None]
-    exception = [None]
+    # Simple router for demonstration - in production you'd have more sophisticated detection
+    if any(term in question.lower() for term in ["calculate", "solve", "equation", "math"]):
+        # Mock math solver
+        return {
+            "answer": "This appears to be a math question. Here's the solution:",
+            "source": "math_solver",
+            "additional_info": ["Step 1: Identify the equation", "Step 2: Solve for variables"]
+        }
+    elif any(term in question.lower() for term in ["code", "program", "function", "algorithm"]):
+        # Mock code support
+        return {
+            "answer": "Here's a code example that might help:",
+            "source": "code_support",
+            "additional_info": {
+                "language": "python",
+                "code": "def example():\n    return 'Hello World!'"
+            }
+        }
+    elif any(term in question.lower() for term in ["news", "recent", "latest"]):
+        # Mock web search
+        return {
+            "answer": "Based on recent information I found:",
+            "source": "web_search",
+            "additional_info": {
+                "snippets": ["Relevant information from the web"],
+                "links": ["https://example.com/resource1", "https://example.com/resource2"]
+            }
+        }
+    else:
+        # Use context retrieval as fallback
+        context = retrieval_func(question)
+        return {
+            "answer": "Based on ALU's information: This is a response based on retrieved context.",
+            "source": "knowledge_base",
+            "additional_info": {"context_used": len(context)}
+        }
+
+# Function to lazily initialize components only when needed
+def get_component(name):
+    global document_processor, retrieval_engine, prompt_engine, nyptho, conversation_memory
     
-    def worker():
-        try:
-            result[0] = func(*args, **kwargs)
-        except Exception as e:
-            exception[0] = e
+    if name == "document_processor" and document_processor is None:
+        from document_processor import DocumentProcessor
+        document_processor = DocumentProcessor()
+        
+    elif name == "retrieval_engine" and retrieval_engine is None:
+        from retrieval_engine_extended import ExtendedRetrievalEngine
+        retrieval_engine = ExtendedRetrievalEngine()
+        
+    elif name == "prompt_engine" and prompt_engine is None:
+        from prompt_engine import PromptEngine
+        prompt_engine = PromptEngine()
+        
+    elif name == "nyptho" and nyptho is None:
+        from prompt_engine.nyptho_integration import NypthoIntegration
+        nyptho = NypthoIntegration()
+        
+    elif name == "conversation_memory" and conversation_memory is None:
+        from enhanced_capabilities.conversation_memory import ConversationMemory
+        os.makedirs("./data", exist_ok=True)
+        conversation_memory = ConversationMemory(persistence_path="./data/conversations.json")
+        conversation_memory.load_from_disk()
     
-    thread = threading.Thread(target=worker)
-    thread.daemon = True
-    thread.start()
-    thread.join(timeout_seconds)
-    
-    if thread.is_alive():
-        return None, TimeoutError(f"Function timed out after {timeout_seconds} seconds")
-    if exception[0]:
-        return None, exception[0]
-    return result[0], None
+    if name == "document_processor": return document_processor
+    elif name == "retrieval_engine": return retrieval_engine
+    elif name == "prompt_engine": return prompt_engine
+    elif name == "nyptho": return nyptho
+    elif name == "conversation_memory": return conversation_memory
 
 # Create FastAPI app
 app = FastAPI(title="ALU Chatbot Backend")
@@ -131,52 +195,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Replace the existing component initialization code with this
-try:
-    # Initialize components one by one with explicit error handling
-    try:
-        document_processor = DocumentProcessor()
-        print("✅ DocumentProcessor initialized")
-    except Exception as e:
-        print(f"⚠️ DocumentProcessor init failed: {e}")
-        document_processor = None
-        
-    try:
-        retrieval_engine = ExtendedRetrievalEngine()
-        print("✅ ExtendedRetrievalEngine initialized")
-    except Exception as e:
-        print(f"⚠️ ExtendedRetrievalEngine init failed: {e}")
-        retrieval_engine = None
-        
-    try:
-        prompt_engine = PromptEngine()
-        print("✅ PromptEngine initialized")
-    except Exception as e:
-        print(f"⚠️ PromptEngine init failed: {e}")
-        prompt_engine = None
-        
-    try:
-        nyptho = NypthoIntegration()
-        print("✅ NypthoIntegration initialized")
-    except Exception as e:
-        print(f"⚠️ NypthoIntegration init failed: {e}")
-        nyptho = None
-        
-    # Create data directory if it doesn't exist
-    os.makedirs("./data", exist_ok=True)
-    
-    try:
-        conversation_memory = ConversationMemory(persistence_path="./data/conversations.json")
-        conversation_memory.load_from_disk()
-        print("✅ ConversationMemory initialized and loaded")
-    except Exception as e:
-        print(f"⚠️ ConversationMemory init failed: {e}")
-        conversation_memory = None
-        
-except Exception as e:
-    print(f"⚠️ CRITICAL INIT ERROR: {e}")
-    # Don't exit - provide minimal functionality instead
 
 # Define request models
 class ChatRequest(BaseModel):
@@ -200,11 +218,53 @@ class PersonalitySettings(BaseModel):
     creativity: float
     precision: float
     friendliness: float
+# Cross-platform function to execute with timeout
+def execute_with_timeout(func, timeout_seconds=30, **kwargs):
+    """Execute a function with a timeout on both Windows and Linux platforms"""
+    result = None
+    error = None
+    
+    # For Linux, use signal-based timeout
+    if platform.system() != "Windows":
+        def timeout_handler(signum, frame):
+            raise TimeoutError("Function execution timed out")
+        
+        # Set the timeout handler
+        signal.signal(signal.SIGALRM, timeout_handler)
+        signal.alarm(timeout_seconds)
+        
+        try:
+            result = func(**kwargs)
+            # Cancel the alarm if successful
+            signal.alarm(0)
+        except Exception as e:
+            error = e
+            # Cancel the alarm on exception too
+            signal.alarm(0)
+    else:
+        # For Windows, use threading-based timeout
+        def worker():
+            nonlocal result, error
+            try:
+                result = func(**kwargs)
+            except Exception as e:
+                error = e
+        
+        thread = threading.Thread(target=worker)
+        thread.daemon = True
+        thread.start()
+        thread.join(timeout_seconds)
+        
+        if thread.is_alive():
+            error = TimeoutError("Function execution timed out")
+    
+    return result, error
 
-@app.get("/")
-async def root():
-    """Health check endpoint"""
-    return {"status": "ALU Chatbot backend is running"}
+def process_chat_internal(request: ChatRequest):
+    """Internal function that can be imported by server.py"""
+    user_message = request.message
+    user_id = request.options.get("user_id", "anonymous") if request.options else "anonymous"
+    conversation_id = request.options.get("conversation_id") if request.options else None
 
 @app.get("/health")
 async def health():
@@ -215,10 +275,10 @@ async def health():
             "status": "healthy",
             "timestamp": datetime.now().isoformat(),
             "components": {
-                "document_processor": document_processor is not None,
-                "retrieval_engine": retrieval_engine is not None,
-                "prompt_engine": prompt_engine is not None,
-                "conversation_memory": conversation_memory is not None
+                "document_processor": get_component("document_processor") is not None,
+                "retrieval_engine": get_component("retrieval_engine") is not None,
+                "prompt_engine": get_component("prompt_engine") is not None,
+                "conversation_memory": get_component("conversation_memory") is not None
             }
         }
     except Exception as e:
@@ -241,10 +301,10 @@ async def debug_info():
         "platform": platform.system(),
         "memory_usage_mb": process.memory_info().rss / (1024 * 1024),
         "components_loaded": {
-            "document_processor": document_processor is not None,
-            "retrieval_engine": retrieval_engine is not None,
-            "prompt_engine": prompt_engine is not None,
-            "conversation_memory": conversation_memory is not None
+            "document_processor": get_component("document_processor") is not None,
+            "retrieval_engine": get_component("retrieval_engine") is not None,
+            "prompt_engine": get_component("prompt_engine") is not None,
+            "conversation_memory": get_component("conversation_memory") is not None
         }
     }
 
@@ -259,6 +319,7 @@ def process_chat_internal(request: ChatRequest):
     
     try:
         # Add user message to conversation memory
+        conversation_memory = get_component("conversation_memory")
         conversation_memory.add_message(user_id, "user", user_message, conversation_id)
         
         # Get conversation history for context
@@ -271,6 +332,7 @@ def process_chat_internal(request: ChatRequest):
                 print(f"Trying enhanced capabilities for: '{user_message}'")
                 
                 # Use the enhanced capabilities router
+                retrieval_engine = get_component("retrieval_engine")
                 result = handle_question(
                     user_message,
                     lambda q: retrieval_engine.retrieve_context(q)
@@ -319,12 +381,14 @@ def process_chat_internal(request: ChatRequest):
                 # Continue to existing document retrieval code
         
         # Get relevant context from the retrieval engine
+        retrieval_engine = get_component("retrieval_engine")
         context_docs = retrieval_engine.retrieve_context(
             query=user_message,
             role="student"  # Default role
         )
         
         # Generate response using the prompt engine
+        prompt_engine = get_component("prompt_engine")
         response = prompt_engine.generate_response(
             query=user_message,
             context=context_docs,
