@@ -96,26 +96,31 @@ def is_school_related(question: str) -> bool:
     
     return False
 
-def handle_question(
-    question: str, 
-    search_school_docs_func=None,
-    conversation_history=None
-) -> Dict[str, Any]:
-    """
-    Route a question to the appropriate enhanced capability.
+def handle_question(query: str) -> Dict[str, Any]:
+    """Route questions to appropriate capability"""
     
-    Args:
-        question: The user's question
-        search_school_docs_func: Function to search school documents
-        conversation_history: Optional conversation history for context
+    # Check for greetings/farewells FIRST before other processing
+    query_lower = query.lower().strip()
+    
+    # Detect greetings
+    if any(greeting in query_lower for greeting in ["hello", "hi", "hey", "greetings"]):
+        return {
+            "capability": "greeting",
+            "answer": "Hello! I'm the ALU Assistant. How can I help with your questions today?",
+            "source": "conversation"
+        }
+    
+    # Detect farewells
+    if any(farewell in query_lower for farewell in ["bye", "goodbye", "see you", "farewell"]):
+        return {
+            "capability": "farewell",
+            "answer": "Goodbye! Feel free to return if you have more questions about ALU. Wishing you success in your studies!",
+            "source": "conversation"
+        }
         
-    Returns:
-        Dict containing:
-            - answer: The response
-            - source: Which capability handled it
-            - additional_info: Any additional information (like steps for math)
-    """
-    print(f"Routing question: '{question}'")
+    # Rest of your existing routing logic...
+    
+    print(f"Routing question: '{query}'")
     
     # 1. First, check if it's a greeting/simple message (don't route these)
     greeting_patterns = [
@@ -124,7 +129,7 @@ def handle_question(
     ]
     
     for pattern in greeting_patterns:
-        if re.search(pattern, question.lower()):
+        if re.search(pattern, query.lower()):
             print("Detected as greeting/simple message")
             return {
                 "answer": "Hello! How can I help you today?",
@@ -139,10 +144,10 @@ def handle_question(
     ]
     
     for pattern in geo_patterns:
-        if re.search(pattern, question.lower()):
+        if re.search(pattern, query.lower()):
             print("Detected as geographical/knowledge question")
             try:
-                search_result = search_web(question, conversation_history)
+                search_result = search_web(query, None)
                 return {
                     "answer": search_result.get("answer", "I couldn't find information about this."),
                     "source": "web_search",
@@ -156,9 +161,9 @@ def handle_question(
                 # Fall through to other options
     
     # 3. Try code support
-    if is_code_question(question):
+    if is_code_question(query):
         try:
-            result = handle_code_question(question)
+            result = handle_code_question(query)
             return {
                 "answer": result.get("answer", "I couldn't analyze this code."),
                 "source": "code_support",
@@ -168,9 +173,9 @@ def handle_question(
             print(f"Code support error: {e}")
     
     # 4. Try math solving (make sure the question actually has numbers or math symbols)
-    if is_math_question(question) and re.search(r'[0-9+\-*/^=]', question):
+    if is_math_question(query) and re.search(r'[0-9+\-*/^=]', query):
         try:
-            answer, steps = solve_math_problem(question)
+            answer, steps = solve_math_problem(query)
             # Use the new formatter for better math display
             response = format_math_solution(answer, steps)
             return {
@@ -182,10 +187,10 @@ def handle_question(
             print(f"Math solver error: {e}")
     
     # 5. Try web search for other general knowledge (most flexible)
-    if is_general_knowledge_question(question):
+    if is_general_knowledge_question(query):
         try:
             # Pass conversation history to web search
-            search_result = search_web(question, conversation_history)
+            search_result = search_web(query, None)
             return {
                 "answer": search_result.get("answer", "I couldn't find information about this."),
                 "source": "web_search",
@@ -198,9 +203,9 @@ def handle_question(
             print(f"Web search error: {e}")
     
     # 6. If we got here, use the provided search function if available
-    if search_school_docs_func:
+    if None:
         try:
-            docs = search_school_docs_func(question)
+            docs = None(query)
             # Process docs here if needed
             return {
                 "answer": "I found some information in our knowledge base that might help.",

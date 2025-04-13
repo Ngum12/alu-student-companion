@@ -7,7 +7,7 @@ __pycache__/
 env/
 venv/
 compat_venv/
-
+fresh_env
 # Virtual Environment
 ENV/
 

@@ -3,13 +3,19 @@ fastapi==0.104.1
 uvicorn==0.23.2
 pydantic==2.4.2
 python-multipart==0.0.6
-markdown==3.5.1
+markdown==3.5.1  # Added markdown package
 
 # Vector database and embeddings
 chromadb==0.4.22
-torch==2.0.0 --extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.2.0 --extra-index-url https://download.pytorch.org/whl/cpu  # Updated to compatible version
+
+# IMPORTANT: These three packages must be compatible versions
+huggingface_hub==0.17.3
+transformers==4.33.2
+accelerate==0.23.0
+
+# Use sentence-transformers version after fixing other dependencies
 sentence-transformers==2.2.2
-huggingface_hub==0.16.4
 
 # Document processing
 pypdf==3.17.1

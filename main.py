@@ -40,6 +40,9 @@ from PIL import Image
 import io
 from transformers import CLIPProcessor, CLIPModel
 
+# Add this after your other imports
+from enhanced_capabilities.conversation_model import ConversationModelHandler
+
 # Cross-platform imports and utilities
 if platform.system() != "Windows":
     # Linux-specific imports
@@ -201,6 +204,14 @@ try:
         print("✅ Advanced capabilities initialized")
     except Exception as e:
         print(f"⚠️ Error initializing advanced capabilities: {e}")
+
+    # Add this after other component initializations
+    try:
+        conversation_handler = ConversationModelHandler()
+        print("✅ Conversation model handler initialized")
+    except Exception as e:
+        print(f"⚠️ Conversation model initialization failed: {e}")
+        conversation_handler = None
         
 except Exception as e:
     print(f"⚠️ CRITICAL INIT ERROR: {e}")
@@ -318,15 +329,33 @@ def process_chat_internal(request: ChatRequest):
                     
                     response = f"{result['answer']}\n\nSources:{sources}"
                 elif result["source"] == "code_support":
-                    # Properly format code responses
-                    code_result = result.get("additional_info", {})
-                    language = code_result.get("language", "text")
-                    code = code_result.get("code", "")
-                    
-                    # Format with proper code blocks
-                    response = f"{result['answer']}\n\n```{language}\n{code}\n```"
+                    # Replace code generation with friendly explanation
+                    response = "I'm sorry, I'm focused on helping with ALU-related questions and can't provide code examples. Could I help you with something about your studies instead?"
                 else:
                     response = result["answer"]
+                
+                # Add conversational fallback for generic or uncertain responses
+                if "I don't have specific information" in response or "I don't know" in response or len(response) < 50:
+                    if conversation_handler:
+                        try:
+                            # Get conversation history for context
+                            conv_history = conversation.get_formatted_history()
+                            conversational_response = conversation_handler.get_response(user_message, conv_history)
+                            
+                            # If the original response is very short, just use the conversational response
+                            if len(response) < 50:
+                                response = conversational_response
+                            else:
+                                # Otherwise append it as a friendly addition
+                                response = f"{response}\n\nIs there something else I can help you with about ALU?"
+                        except Exception as e:
+                            print(f"Error in conversational fallback: {e}")
+                            # Continue with original response if conversational fallback fails
+                
+                # Add a friendly sign-off to responses if they don't already have one
+                friendly_endings = ["Feel free to ask", "Let me know", "Hope that helps", "Anything else", "Can I help"]
+                if not any(ending in response for ending in friendly_endings) and len(response) > 100:
+                    response += "\n\n💡 Is there anything else about ALU you'd like to know?"
                 
                 # Add AI response to conversation memory
                 conversation_memory.add_message(user_id, "assistant", response, conversation.id)
@@ -358,6 +387,29 @@ def process_chat_internal(request: ChatRequest):
             role="student",
             options={}
         )
+        
+        # Add conversational fallback for generic or uncertain responses
+        if "I don't have specific information" in response or "I don't know" in response or len(response) < 50:
+            if conversation_handler:
+                try:
+                    # Get conversation history for context
+                    conv_history = conversation.get_formatted_history()
+                    conversational_response = conversation_handler.get_response(user_message, conv_history)
+                    
+                    # If the original response is very short, just use the conversational response
+                    if len(response) < 50:
+                        response = conversational_response
+                    else:
+                        # Otherwise append it as a friendly addition
+                        response = f"{response}\n\nIs there something else I can help you with about ALU?"
+                except Exception as e:
+                    print(f"Error in conversational fallback: {e}")
+                    # Continue with original response if conversational fallback fails
+        
+        # Add a friendly sign-off to responses if they don't already have one
+        friendly_endings = ["Feel free to ask", "Let me know", "Hope that helps", "Anything else", "Can I help"]
+        if not any(ending in response for ending in friendly_endings) and len(response) > 100:
+            response += "\n\n💡 Is there anything else about ALU you'd like to know?"
         
         # Add AI response to conversation memory
         conversation_memory.add_message(user_id, "assistant", response, conversation.id)
