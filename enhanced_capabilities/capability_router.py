@@ -96,29 +96,33 @@ def is_school_related(question: str) -> bool:
     
     return False
 
-def handle_question(query: str) -> Dict[str, Any]:
-    """Route questions to appropriate capability"""
+# Update the function signature to accept the context retriever function
+def handle_question(query: str, context_retriever=None) -> Dict[str, Any]:
+    """Route questions to appropriate capability
     
-    # Check for greetings/farewells FIRST before other processing
+    Args:
+        query: The user's question
+        context_retriever: Optional function to retrieve context documents
+    """
     query_lower = query.lower().strip()
     
-    # Detect greetings
-    if any(greeting in query_lower for greeting in ["hello", "hi", "hey", "greetings"]):
+    # Check for simple greetings first
+    greeting_phrases = ["hello", "hi", "hey", "greetings", "good morning", "good afternoon", "good evening"]
+    if any(query_lower == phrase or query_lower.startswith(phrase) for phrase in greeting_phrases):
         return {
             "capability": "greeting",
-            "answer": "Hello! I'm the ALU Assistant. How can I help with your questions today?",
+            "answer": "Hello! I'm the ALU student companion Assistant. How can I help with your questions today?",
             "source": "conversation"
         }
     
-    # Detect farewells
-    if any(farewell in query_lower for farewell in ["bye", "goodbye", "see you", "farewell"]):
+    # Check for farewells
+    farewell_phrases = ["bye", "goodbye", "see you", "farewell", "thanks", "thank you"]
+    if any(query_lower == phrase or query_lower.startswith(phrase) for phrase in farewell_phrases):
         return {
             "capability": "farewell",
             "answer": "Goodbye! Feel free to return if you have more questions about ALU. Wishing you success in your studies!",
             "source": "conversation"
         }
-        
-    # Rest of your existing routing logic...
     
     print(f"Routing question: '{query}'")
     
@@ -202,10 +206,10 @@ def handle_question(query: str) -> Dict[str, Any]:
         except Exception as e:
             print(f"Web search error: {e}")
     
-    # 6. If we got here, use the provided search function if available
-    if None:
+    # 6. Use context_retriever if provided for document search
+    if context_retriever:
         try:
-            docs = None(query)
+            docs = context_retriever(query)
             # Process docs here if needed
             return {
                 "answer": "I found some information in our knowledge base that might help.",

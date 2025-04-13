@@ -315,6 +315,18 @@ def process_chat_internal(request: ChatRequest):
                 
                 print(f"Selected capability: {result['source']}")
                 
+                # If response came from document search but was very short or low confidence
+                if result["source"] == "document_search" and (len(result["answer"]) < 50 or "confidence" in result and result["confidence"] < 0.7):
+                    # Try using conversation model instead for common phrases
+                    if conversation_handler:
+                        try:
+                            conv_response = conversation_handler.get_response(user_message, conversation.get_formatted_history())
+                            if len(conv_response) > len(result["answer"]):
+                                result["answer"] = conv_response
+                                result["source"] = "conversation"
+                        except Exception as e:
+                            print(f"Error using conversation fallback: {e}")
+                
                 # Format the response based on which capability handled it
                 if result["source"] == "math_solver":
                     steps = "\n".join(result["additional_info"]) if result["additional_info"] else ""
